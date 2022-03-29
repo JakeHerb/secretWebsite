@@ -2,6 +2,7 @@ import { useState } from 'react'
 // import logo from './logo.svg'
 import skull from './media/images/skull.png'
 import './App.css'
+import FormDataComponent from './components/FormDataComponent'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -57,6 +58,7 @@ function App() {
         <img src={skull} className="App-logo" alt="logo" />
         {hasClicked === false ? formComponent : null}
         {hasClicked === true ? buttonAfter : null}
+        <FormDataComponent />
       </header>
     </div>
   )
