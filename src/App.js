@@ -1,32 +1,27 @@
 import './App.css'
 import skullVideoFile from './media/videos/skullVideo.MP4'
 
-import { useState } from 'react'
-import EntrypointState from './states/EntrypointState'
-import EmailEntryState from './states/EmailEntryState'
+import StatefulPageComponent from './components/StatefulPageComponent'
+
 
 function App() {
 
-  const [pageFlip, setPageFlip] = useState(false)
-
   const video = (
-    <video width="640" height="480" loop autoPlay>
+    <video width="640" height="480" loop autoPlay muted>
       <source src={skullVideoFile} type="video/MP4"/>
     </video>
   )
 
-  const landingPage = <EntrypointState/>
-  const emailForm = <EmailEntryState/>
-
-  var currentPageState = pageFlip === false ? landingPage : emailForm;
+  
+ const page = <StatefulPageComponent />
 
   return (
     <div className="App">
       <div className="container">
-        <header onClick={() => {setPageFlip(!pageFlip)}} className="App-header">
+        <header className="App-header">
           <h1>THE AMIABIS</h1>
             {video}
-            {currentPageState}
+            {page}
         </header>
       </div>
     </div>
