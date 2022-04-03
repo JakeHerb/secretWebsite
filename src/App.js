@@ -5,7 +5,7 @@ import StatefulPageComponent from './components/StatefulPageComponent'
 function App() {
 
   const video = (
-    <video width="640" height="480" controls loop autoPlay muted >
+    <video width="640" height="480" loop autoPlay muted >
       <source src='https://videosformattswebsite.s3.us-west-2.amazonaws.com/skullVideo.MP4' type="video/MP4"/>
     </video>
   )
