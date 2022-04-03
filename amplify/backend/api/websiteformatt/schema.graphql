@@ -22,7 +22,7 @@ type VodAsset @model (subscriptions: {level: public})
   description:String!
 
   #DO NOT EDIT
-  video:VideoObject @connection
+  video:VideoObject @hasOne
 }
 
 #DO NOT EDIT
