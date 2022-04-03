@@ -1,5 +1,5 @@
 import './App.css'
-import skullVideo from './media/videos/skullVideo.MP4'
+import skullVideo from 'https://videosformattswebsite.s3.us-west-2.amazonaws.com/skullVideo.MP4'
 
 import StatefulPageComponent from './components/StatefulPageComponent'
 
