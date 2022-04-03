@@ -1,0 +1,12 @@
+{
+  "resourceName": "s3websiteformattvideos",
+  "bucketName": "websiteformatt-videos",
+  "policyUUID": "503e3956",
+  "storageAccess": "authAndGuest",
+  "guestAccess": [
+    "READ"
+  ],
+  "authAccess": [
+    "READ"
+  ]
+}
