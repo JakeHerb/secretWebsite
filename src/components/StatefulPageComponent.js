@@ -3,27 +3,38 @@ import React, { Component } from 'react';
 import EntrypointState from '../states/EntrypointState'
 import EmailEntryState from '../states/EmailEntryState'
 import OnSubmitState from '../states/OnSubmitState'
+import EscapeState from '../states/EscapeState';
 
 export default class StatefulPageComponent extends Component {
     affinity;
     email;
     constructor(props) {
         super(props)
-        this.page = <EntrypointState />;
+        this.page = <EscapeState />;
         this.words = <p></p>;
     }
 
     componentDidMount() {
         localStorage.setItem('affinity', 'NONE');
         localStorage.setItem('email', '');
+        localStorage.setItem('wantsToEscape', false);
         window.addEventListener('selectedAffinity', (e) => {
-            console.log("Change to storage!");
+            console.log("GOT AN AFFINITY!!");
+            this.forceUpdate();
+            e.preventDefault();
+        })
+        window.addEventListener('choseToEscape', (e) => {
+            console.log("ESCAPING!");
             this.forceUpdate();
             e.preventDefault();
         })
     }
 
     componentWillUpdate(_nextProps, _nextState) {
+        if (!localStorage.getItem('wantsToEscape')) {
+            this.page = <EscapeState />;
+            return;
+        }
         this.affinity = localStorage.getItem('affinity');
         this.email = localStorage.getItem('email');
         console.log("email!: " + this.email);
@@ -45,7 +56,7 @@ export default class StatefulPageComponent extends Component {
                 this.words = <p>YOUR MISSION WILL BEGIN ON PLANET VATANICA</p>
                 break;
             default:
-                this.words = <p>No default case handled...</p>
+                break
         }
 
         if (this.affinity === "NONE") {
