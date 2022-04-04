@@ -1,33 +1,68 @@
 import '../App.css'
 import PillComponent from '../components/PillComponent'
-import redEcstacyPill from '../media/images/ecstacy_pill_red.jpg'
-import blueEcstacyPill from '../media/images/ecstacy_pill_blue.jpg'
+import pinkGummy from '../media/images/pink_gummy.png'
+import greenGummy from '../media/images/green_gummy.png'
+import orangeGummy from '../media/images/orange_gummy.png'
+import purpleGummy from '../media/images/purple_gummy.png'
+import yellowGummy from '../media/images/yellow_gummy.png'
 
 function EntrypointState() {
 
-  const redPill = (
+  const yellowPill = (
   <PillComponent 
-    imageSource={redEcstacyPill}
-    text="RED PILL"
+    imageSource={yellowGummy}
+    text="PINK"
     >
   </PillComponent>)
   
-  const bluePill = (
+  const orangePill = (
     <PillComponent 
-      imageSource={blueEcstacyPill}
-      text="BLUE PILL"
+      imageSource={orangeGummy}
+      text="BLUE"
       >
     </PillComponent>)
+
+    const pinkPill = (
+    <PillComponent 
+      imageSource={pinkGummy}
+      text="PINK"
+      >
+    </PillComponent>)
+
+    const purplePill = (
+    <PillComponent 
+        imageSource={purpleGummy}
+        text="BLUE"
+        >
+    </PillComponent>)
+    
+    const greenPill = (
+    <PillComponent 
+        imageSource={greenGummy}
+        text="BLUE"
+    >
+    </PillComponent>)
+    
+
 
   return (
     <div className="State-Entrypoint">
         <h3>CHOOSE WISELY</h3>
         <div className='PillSelection'>
-          <div className='RedPill'>
-            {redPill}
+          <div className='YellowGummy'>
+            {yellowPill}
           </div>
-          <div className='BluePill'>
-            {bluePill}
+          <div className='OrangeGummy'>
+            {orangePill}
+          </div>
+          <div className='PinkGummy'>
+            {pinkPill}
+          </div>
+          <div className='PurpleGummy'>
+            {purplePill}
+          </div>
+          <div className='GreenGummy'>
+            {greenPill}
           </div>
         </div>
     </div>

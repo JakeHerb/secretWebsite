@@ -44,7 +44,6 @@ export default class PillComponent extends Component {
                         width="100px" 
                         src={this.props.imageSource} 
                         alt="A choice." />
-            <p style={{ color: this.textColor }}>{this.props.text}</p>
             </div>
         )
     }
