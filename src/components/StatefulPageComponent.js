@@ -31,7 +31,7 @@ export default class StatefulPageComponent extends Component {
             this.page = <EmailEntryState />;
         }
         if (nextState.clicks === 2) {
-            this.page = <EmailEntryState />;
+            return
         }
         if (nextState.clicks === 3) {
             this.page = <OnSubmitState />;
