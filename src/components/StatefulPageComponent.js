@@ -10,6 +10,7 @@ export default class StatefulPageComponent extends Component {
     constructor(props) {
         super(props)
         this.page = <EntrypointState />;
+        this.words = <p></p>;
     }
 
     componentDidMount() {
@@ -22,10 +23,30 @@ export default class StatefulPageComponent extends Component {
         })
     }
 
-    componentWillUpdate(nextProps, nextState) {
+    componentWillUpdate(_nextProps, _nextState) {
         this.affinity = localStorage.getItem('affinity');
         this.email = localStorage.getItem('email');
         console.log("email!: " + this.email);
+
+        switch (this.affinity) {
+            case "YELLOW":
+                this.words = <p>YOUR MISSION WILL BEGIN ON PLANET ESTALAR</p>
+                break;
+            case "ORANGE":
+                this.words = <p>YOUR MISSION WILL BEGIN ON PLANET LETHERION</p>
+                break;
+            case "PINK":
+                this.words = <p>YOUR MISSION WILL BEGIN ON PLANET DUFAITHAN</p>
+                break;
+            case "PURPLE":
+                this.words = <p>YOUR MISSION WILL BEGIN ON PLANET BLON</p>
+                break;
+            case "GREEN":
+                this.words = <p>YOUR MISSION WILL BEGIN ON PLANET VATANICA</p>
+                break;
+            default:
+                this.words = <p>No default case handled...</p>
+        }
 
         if (this.affinity === "NONE") {
             console.log("Returning entrypoint cause none");
@@ -34,7 +55,7 @@ export default class StatefulPageComponent extends Component {
             console.log("Returning email cause email is empty");
             this.page = <EmailEntryState />;
         } else {
-            console.log("Returning on submit since we're done")
+            console.log("Returning on submit since we're done");
             this.page = <OnSubmitState />;
         }
     }
@@ -44,6 +65,7 @@ export default class StatefulPageComponent extends Component {
         return (
             <div className="page">
                 {this.page}
+                {this.words}
             </div>
         )
     }

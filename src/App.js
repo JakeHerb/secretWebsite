@@ -17,7 +17,7 @@ function App() {
     <div className="App">
       <div className="container">
         <header className="App-header">
-          <h1>THE AMIABIS</h1>
+          <h1>THE AMY ABYSS</h1>
             {video}
             {page}
         </header>

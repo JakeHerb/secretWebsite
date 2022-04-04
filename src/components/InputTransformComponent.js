@@ -1,56 +1,46 @@
 import React, { Component } from 'react';
 
 export default class InputTransformComponent extends Component {
-    userData;
     constructor(props) {
         super(props);
-        this.onClick = this.onClick.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
+        this.onChange = this.onChange.bind(this);
         this.state = {
-            clicked: false,
-            email: ''
+            email: '', 
+            submitted: false
         }
     }
     // Form Events
-    onClick() {
-        this.setState({ clicked: !this.state.clicked })
-        if (this.state.clicked) {
-            console.log("Click!")
-        } else {
-            console.log("Unclick.")
-        }
+    onChange(e) {
+        console.log("CHANGING!: " + e.target.value);
+        this.setState({
+            email: e.target.value,
+            submitted: false
+        });
     }
     onSubmit(e) {
-        e.preventDefault()
-        console.log("Submit! Email: " + e);
+        console.log("Submit! Email: " + e.target.value);
         this.setState({
-            clicked: false,
-            email: e.target.value
+            submitted: true
         })
     }
     // React Life Cycle
     componentDidMount() {
-        this.userData = JSON.parse(localStorage.getItem('user'));
-        if (localStorage.getItem('user')) {
-            if (this.userData.email) {
-                this.setState({
-                    clicked: false,
-                    email: this.userData.email        
-                })
-            }
+        this.userData = JSON.parse(localStorage.getItem('formData'));
+        if (localStorage.getItem('formData')) {
             this.setState({
-                clicked: this.userData.clicked,
-                email: ''
+                email: '',
+                submitted: false
             })
         } else {
             this.setState({
-                clicked: false,
-                email: ''
+                email: '',
+                submitted: false
             })
         }
     }
     componentWillUpdate(nextProps, nextState) {
-        localStorage.setItem('user', JSON.stringify(nextState));
+        localStorage.setItem('formData', JSON.stringify(nextState));
     }
 
     render() {
@@ -62,11 +52,13 @@ export default class InputTransformComponent extends Component {
                             type="email"   
                             className="form-control" 
                             placeholder='YOUR EMAIL'
+                            onChange={this.onChange}
                             onSubmit={this.onSubmit} 
+                            value={this.state.email}
                         />
                         <div className="line"></div>
                     </div>
-                    <p className="btn btn-primary btn-block" onClick={this.onClick}>[SUBMIT]</p>
+                    <p className="btn btn-primary btn-block" onClick={this.onSubmit}>[SUBMIT]</p>
                 </form>
             </div>
         )
