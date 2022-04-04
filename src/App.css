@@ -125,7 +125,7 @@ body {
   font-weight: bold;
   font-size: 1.25rem;
   transition: background 0.1s ease;
-  background: rgb(255, 0, 0);
+  background: rgb(0, 0, 0);
   outline-color: hsl(var(--hue), 100%, 80%);
   -webkit-animation-name: flow-and-shake;
           animation-name: flow-and-shake;
@@ -151,7 +151,7 @@ body {
   font-weight: bold;
   font-size: 1.25rem;
   transition: background 0.1s ease;
-  background: rgb(255, 0, 0);
+  background: rgb(0, 0, 0);
   outline-color: hsl(var(--hue), 100%, 80%);
   -webkit-animation-name: flow-and-shake;
   animation-name: flow-and-shake;
@@ -178,6 +178,10 @@ body {
 }
 .BluePill {
   margin-left: 50px;
+}
+
+img {
+  cursor: pointer;
 }
 
 /* button:hover {

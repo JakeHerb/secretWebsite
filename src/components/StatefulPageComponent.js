@@ -11,6 +11,7 @@ export default class StatefulPageComponent extends Component {
         this.onClickButton = this.onClickButton.bind(this);
         this.page = <EntrypointState />;
         this.state = {
+            affinity: 'NONE',
             clicks: 0
         }
     }
@@ -27,13 +28,10 @@ export default class StatefulPageComponent extends Component {
         if (nextState.clicks === 0) {
             this.page = <EntrypointState />;
         }
-        if (nextState.clicks === 1) {
+        if (nextState.clicks === 10) {
             this.page = <EmailEntryState />;
         }
-        if (nextState.clicks === 2) {
-            return
-        }
-        if (nextState.clicks === 3) {
+        if (nextState.clicks === 30) {
             this.page = <OnSubmitState />;
         }
     }
@@ -51,7 +49,7 @@ export default class StatefulPageComponent extends Component {
 
         
         return (
-            <div onClick={() => this.onClickButton()}className="page">
+            <div className="page">
                 {this.page}
             </div>
         )

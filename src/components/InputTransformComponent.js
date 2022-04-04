@@ -22,6 +22,7 @@ export default class InputTransformComponent extends Component {
     }
     onSubmit(e) {
         e.preventDefault()
+        console.log("Submit! Email: " + e);
         this.setState({
             clicked: false,
             email: e.target.value
@@ -31,9 +32,15 @@ export default class InputTransformComponent extends Component {
     componentDidMount() {
         this.userData = JSON.parse(localStorage.getItem('user'));
         if (localStorage.getItem('user')) {
+            if (this.userData.email) {
+                this.setState({
+                    clicked: false,
+                    email: this.userData.email        
+                })
+            }
             this.setState({
                 clicked: this.userData.clicked,
-                email: this.userData.email
+                email: ''
             })
         } else {
             this.setState({
@@ -47,32 +54,21 @@ export default class InputTransformComponent extends Component {
     }
 
     render() {
-        
-        if (this.state.clicked === true) {
-            return (
-                <div className="email-container">
-                    <form onSubmit={this.onSubmit}>
-                        <div className="field">
-                            <input 
-                                type="email"   
-                                className="form-control" 
-                                placeholder='YOUR EMAIL'
-                                value={this.state.email === "" ? 
-                                    null : 
-                                    this.state.email} onSubmit={this.onSubmit} 
-                            />
-                            <div className="line"></div>
-                        </div>
-                        <p className="btn btn-primary btn-block" onClick={this.onClick}>[SUBMIT]</p>
-                    </form>
-                </div>
-            )
-        } // End if
-
         return (
-            <div className='Email-Form'>
-                <h3 onClick={this.onClick} style={{color: 'red'}}>YOUR EMAIL</h3>
+            <div className="email-container">
+                <form onSubmit={this.onSubmit}>
+                    <div className="field">
+                        <input 
+                            type="email"   
+                            className="form-control" 
+                            placeholder='YOUR EMAIL'
+                            onSubmit={this.onSubmit} 
+                        />
+                        <div className="line"></div>
+                    </div>
+                    <p className="btn btn-primary btn-block" onClick={this.onClick}>[SUBMIT]</p>
+                </form>
             </div>
         )
-    }
+    } // End if
 }

@@ -11,35 +11,35 @@ function EntrypointState() {
   const yellowPill = (
   <PillComponent 
     imageSource={yellowGummy}
-    text="PINK"
+    color="YELLOW"
     >
   </PillComponent>)
   
   const orangePill = (
     <PillComponent 
       imageSource={orangeGummy}
-      text="BLUE"
+      color="ORANGE"
       >
     </PillComponent>)
 
     const pinkPill = (
     <PillComponent 
       imageSource={pinkGummy}
-      text="PINK"
+      color="PINK"
       >
     </PillComponent>)
 
     const purplePill = (
     <PillComponent 
         imageSource={purpleGummy}
-        text="BLUE"
+        color="PURPLE"
         >
     </PillComponent>)
     
     const greenPill = (
     <PillComponent 
         imageSource={greenGummy}
-        text="BLUE"
+        color="GREEN"
     >
     </PillComponent>)
     
