@@ -16,14 +16,10 @@ export default class PillComponent extends Component {
 
     render() {
         return (
-            <div className="pill">
-                    <img
-                        onClick={this.onSelectAffinity}
-                        height="100px" 
-                        width="100px" 
-                        src={this.props.imageSource}
-                        alt="A choice." />
-            </div>
+            <img
+                onClick={this.onSelectAffinity}
+                src={this.props.imageSource}
+                alt="A choice." />
         )
     }
 }
