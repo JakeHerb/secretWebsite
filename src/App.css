@@ -18,8 +18,7 @@ h1 {
 }
 
 h3 {
-  margin-top: 0px;
-  margin-bottom: 0px;
+  margin-top: 20%;
 }
 
 #app {
@@ -118,10 +117,6 @@ body {
 .PillSelection img {
   margin-top: 20px;
   width: 100%;
-}
-
-.State-Entrypoint h3 {
-  margin-top: 20%;
 }
 
 img {
