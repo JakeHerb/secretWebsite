@@ -41,19 +41,19 @@ export default class StatefulPageComponent extends Component {
 
         switch (this.affinity) {
             case "YELLOW":
-                this.words = <p>YOUR MISSION WILL BEGIN ON PLANET ESTALAR</p>
+                this.words = <p>YOUR MISSION WILL BEGIN ON <br />PLANET ESTALAR</p>
                 break;
             case "ORANGE":
-                this.words = <p>YOUR MISSION WILL BEGIN ON PLANET LETHERION</p>
+                this.words = <p>YOUR MISSION WILL BEGIN ON <br />PLANET LETHERION</p>
                 break;
             case "PINK":
-                this.words = <p>YOUR MISSION WILL BEGIN ON PLANET DUFAITHAN</p>
+                this.words = <p>YOUR MISSION WILL BEGIN ON <br />PLANET DUFAITHAN</p>
                 break;
             case "PURPLE":
-                this.words = <p>YOUR MISSION WILL BEGIN ON PLANET BLON</p>
+                this.words = <p>YOUR MISSION WILL BEGIN ON <br />PLANET BLON</p>
                 break;
             case "GREEN":
-                this.words = <p>YOUR MISSION WILL BEGIN ON PLANET VATANICA</p>
+                this.words = <p>YOUR MISSION WILL BEGIN ON <br />PLANET VATANICA</p>
                 break;
             default:
                 break
