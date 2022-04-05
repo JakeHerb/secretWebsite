@@ -102,17 +102,24 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 100%;
+  width: 80%;
+  margin: 0px auto;
 }
 
 .PillSelection div {
-  width: 15%;
+  width: 20%;
   height: 100%;
 }
 
 .PillSelection img {
+  margin-top: 20px;
   width: 100%;
 }
+
+.State-Entrypoint h3 {
+  margin-top: 20%;
+}
+
 img {
   cursor: pointer;
 }
