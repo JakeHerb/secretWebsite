@@ -49,7 +49,9 @@
           "defaultAuthentication": {
             "authenticationType": "API_KEY",
             "apiKeyConfig": {
-              "apiKeyExpirationDays": 7
+              "apiKeyExpirationDays": 7,
+              "apiKeyExpirationDate": "2022-04-16T18:47:14.697Z",
+              "description": ""
             }
           },
           "additionalAuthenticationProviders": [
@@ -62,6 +64,23 @@
           ]
         }
       }
+    }
+  },
+  "function": {
+    "websiteformatt3b312ed8": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda",
+      "dependsOn": [
+        {
+          "category": "api",
+          "resourceName": "websiteformatt",
+          "attributes": [
+            "GraphQLAPIIdOutput",
+            "GraphQLAPIEndpointOutput"
+          ]
+        }
+      ]
     }
   }
 }

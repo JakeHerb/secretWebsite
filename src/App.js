@@ -1,6 +1,10 @@
 import './App.css'
 import StatefulPageComponent from './components/StatefulPageComponent'
+import Amplify from 'aws-amplify'
+import config from './aws-exports'
+import { ContactFormComponent } from './components/ContactFormComponent'
 
+Amplify.configure(config)
 function App() {
 
   const video = (
@@ -19,6 +23,9 @@ function App() {
             {video}
             {page}
         </header>
+        <body>
+          <ContactFormComponent />
+        </body>
       </div>
     </div>
   )

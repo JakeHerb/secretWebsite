@@ -14,6 +14,13 @@
     "categories": {
       "auth": {
         "websiteformatt": {}
+      },
+      "function": {
+        "websiteformatt3b312ed8": {
+          "sesEmail": "jakeherbel@gmail.com",
+          "deploymentBucketName": "amplify-amplify60d3e87de6644-staging-14816-deployment",
+          "s3Key": "amplify-builds/websiteformatt3b312ed8-2f383669536652574562-build.zip"
+        }
       }
     }
   }
