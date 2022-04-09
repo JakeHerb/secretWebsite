@@ -2,7 +2,8 @@ import './App.css'
 import StatefulPageComponent from './components/StatefulPageComponent'
 import Amplify from 'aws-amplify'
 import config from './aws-exports'
-import { ContactFormComponent } from './components/ContactFormComponent'
+import { ChakraProvider } from '@chakra-ui/react'
+import { ContactFormModal } from './components/ContactFormModal'
 
 Amplify.configure(config)
 function App() {
@@ -16,18 +17,18 @@ function App() {
  const page = <StatefulPageComponent />
 
   return (
+    <ChakraProvider>
     <div className="App">
       <div className="container">
         <header className="App-header">
           <h1>THE AMY ABYSS</h1>
             {video}
             {page}
+            <ContactFormModal />
         </header>
-        <body>
-          <ContactFormComponent />
-        </body>
       </div>
     </div>
+    </ChakraProvider>
   )
 }
 

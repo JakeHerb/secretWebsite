@@ -72,13 +72,13 @@ import {
         <form onSubmit={handleContactFormSubmit}>
           <ModalBody pb={6}>
             <FormControl>
-              <FormLabel>Name</FormLabel>
+              <FormLabel>Affinity</FormLabel>
               <Input
                 ref={initialRef}
                 placeholder="Naruto Uzumaki"
-                value={formState.name}
+                value={formState.affinity}
                 onChange={(e) =>
-                  setFormState({ ...formState, name: e.target.value })
+                  setFormState({ ...formState, affinity: e.target.value })
                 }
               />
             </FormControl>
