@@ -16,6 +16,7 @@ Amplify.configure(config)
 function App() {
 
   const [hasClickedEscape, setHasClickedEscape] = useState(false)
+  const [hasClickedSure, setHasClickedSure] = useState(false)
   const [hasChosenPill, setHasChosenPill] = useState(false)
   const [count, setCount] = useState(0)
   const [planet, setPlanet] = useState("")
@@ -43,6 +44,25 @@ function App() {
               </p>
               </div>
       </div>
+  )
+
+  const areYouSureBody = (
+    <div className="State-Sure">
+    <h3>THERE ARE RISKS INVOLVED. ARE YOU SURE YOU WANT TO CONTINUE?</h3>
+    <div onClick={() => {
+      console.log("CLICK!");
+      setHasClickedSure(true)
+        }} 
+      className='SureSelection'>
+        <p style={{
+            color: "red",
+            cursor: "pointer",
+            fontSize: "2.0em",
+        }}>
+            YES / NO
+        </p>
+        </div>
+</div>
   )
 
   const useFindPlanet = (pillColor) => {
@@ -170,7 +190,8 @@ function App() {
           <h1>THE AMY ABYSS</h1>
             {video}
             {hasClickedEscape === false ? escapeBody : null}
-            {(hasClickedEscape === true && hasChosenPill === false) ? pillSelectionBody : null}
+            {(hasClickedEscape === true && hasClickedSure === false) ? areYouSureBody : null}
+            {(hasClickedSure === true && hasChosenPill === false) ? pillSelectionBody : null}
             {hasChosenPill === true ? planet : null}
             {count > 5 ? contactEntryBody : null}
         </header>
