@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 import EntrypointState from '../states/EntrypointState'
-import EmailEntryState from '../states/EmailEntryState'
+import InputTransformComponent from '../components/InputTransformComponent'
 import OnSubmitState from '../states/OnSubmitState'
 import EscapeState from '../states/EscapeState';
 
@@ -64,10 +64,17 @@ export default class StatefulPageComponent extends Component {
             this.page = <EntrypointState />;
         } else if (this.email === '') {
             console.log("Returning email cause email is empty");
-            this.page = <EmailEntryState />;
+            this.page = (     
+                <div className="State-EmailEntry">
+                    <p>ENTER YOUR EMAIL FOR A <br/>
+                        CHANCE TO MAKE THE LIST
+                    </p>
+                    <InputTransformComponent/>
+                </div>
+            )
         } else {
             console.log("Returning on submit since we're done");
-            this.page = <OnSubmitState />;
+            this.page = <OnSubmitState onSubmit={() => {console.log("ONSUBMIT!")}}/>;
         }
     }
 

@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { API } from 'aws-amplify'
+import { createContact } from '../graphql/mutations'
 
 export default class InputTransformComponent extends Component {
     constructor(props) {
@@ -18,11 +20,33 @@ export default class InputTransformComponent extends Component {
             submitted: false
         });
     }
-    onSubmit(e) {
-        console.log("Submit! Email: " + e.target.value);
+
+    async onSubmit(e) {
+        e.preventDefault()
+        console.log("Submit! Email: " + this.state.email);
+        const email = this.state.email
+        const affinity = "Jake"
         this.setState({
+            email: e.target.value,
             submitted: true
         })
+        if (this.state.email !== '') {
+            try {
+              await API.graphql({
+                  query: createContact,
+                  variables: {
+                      input: {
+                        email, affinity
+                      }
+                  }
+              })
+    
+              this.props.onClose()
+            } catch (e) {
+                console.log("Error: Signals blurred")
+                console.log(e)
+            }
+          }
     }
     // React Life Cycle
     componentDidMount() {
@@ -44,7 +68,7 @@ export default class InputTransformComponent extends Component {
     }
 
     render() {
-        return (
+        const form = (
             <div className="email-container">
                 <form onSubmit={this.onSubmit}>
                     <div className="field">
@@ -56,11 +80,27 @@ export default class InputTransformComponent extends Component {
                             onSubmit={this.onSubmit} 
                             value={this.state.email}
                         />
-                        <div className="line"></div>
                     </div>
-                    <p className="btn btn-primary btn-block" onClick={this.onSubmit}>[SUBMIT]</p>
                 </form>
             </div>
+        )
+
+        const submittedPage = (
+              <div className="State-onsubmit">
+                <div>
+                  <p>YOU ARE # 362
+                  <br />WE WILL BE IN CONTACT
+                  <br />IF YOU MADE THE LIST
+                  <br />NOT EVERYONE IS WORTHY
+                  </p>
+                </div>
+            </div>
+        )
+
+        return (
+            this.state.submitted === false ?
+                form :
+                submittedPage
         )
     } // End if
 }
