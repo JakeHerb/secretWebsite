@@ -40,8 +40,6 @@ export default class InputTransformComponent extends Component {
                       }
                   }
               })
-    
-              this.props.onClose()
             } catch (e) {
                 console.log("Error: Signals blurred")
                 console.log(e)
@@ -69,6 +67,10 @@ export default class InputTransformComponent extends Component {
 
     render() {
         const form = (
+            <>
+            <p>ENTER YOUR EMAIL FOR A <br/>
+            CHANCE TO MAKE THE LIST
+            </p>
             <div className="email-container">
                 <form onSubmit={this.onSubmit}>
                     <div className="field">
@@ -83,6 +85,7 @@ export default class InputTransformComponent extends Component {
                     </div>
                 </form>
             </div>
+            </>
         )
 
         const submittedPage = (

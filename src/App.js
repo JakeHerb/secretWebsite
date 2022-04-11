@@ -159,9 +159,6 @@ function App() {
 
   const contactEntryBody = (
     <div className="State-EmailEntry">
-      <p>ENTER YOUR EMAIL FOR A <br/>
-          CHANCE TO MAKE THE LIST
-      </p>
       <InputTransformComponent/>
     </div> 
   )
