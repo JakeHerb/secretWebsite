@@ -38,7 +38,6 @@ function App() {
               <p style={{
                   color: "red",
                   cursor: "pointer",
-                  fontSize: "2.0em",
               }}>
                   YES / NO
               </p>
@@ -189,13 +188,15 @@ function App() {
         <header className="App-header">
           <h1>THE AMIABIS</h1>
             {video}
-            {hasClickedEscape === false ? escapeBody : null}
-            {(hasClickedEscape === true && hasChosenPill === false) ? pillSelectionBody : null}
-            {(hasChosenPill === true && hasClickedSure === false) ? areYouSureBody : null}
-            {(hasChosenPill === true && hasClickedSure === true) ? planet : null}
-            {count > 5 ? contactEntryBody : null}
         </header>
       </div>
+      <div className='dynamic-content'>
+          {hasClickedEscape === false ? escapeBody : null}
+          {(hasClickedEscape === true && hasChosenPill === false) ? pillSelectionBody : null}
+          {(hasChosenPill === true && hasClickedSure === false) ? areYouSureBody : null}
+          {(hasChosenPill === true && hasClickedSure === true) ? planet : null}
+          {count > 5 ? contactEntryBody : null}
+        </div>
     </div>
   )
 }
