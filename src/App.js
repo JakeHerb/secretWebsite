@@ -18,6 +18,7 @@ function App() {
   const [hasClickedEscape, setHasClickedEscape] = useState(false)
   const [hasChosenPill, setHasChosenPill] = useState(false)
   const [count, setCount] = useState(0)
+  const [planet, setPlanet] = useState("")
 
   const video = (
     <video autoPlay loop muted playsInline >
@@ -44,7 +45,7 @@ function App() {
       </div>
   )
 
-  const missionStatement = (pillColor) => {
+  const useFindPlanet = (pillColor) => {
     switch (pillColor) {
       case "YELLOW":
         return <p>YOUR MISSION WILL BEGIN ON <br />PLANET ESTALAR</p>
@@ -57,66 +58,104 @@ function App() {
       case "GREEN":
         return  <p>YOUR MISSION WILL BEGIN ON <br />PLANET VATANICA</p>
       default:
-          return (
-            <div className="State-Entrypoint">
-            <h3>CHOOSE WISELY</h3>
-            <div className='PillSelection'>
-              <div className='YellowGummy'>
-              <PillComponent 
-                imageSource={yellowGummy}
-                color="YELLOW"
-                >
-              </PillComponent>
-              </div>
-              <div className='OrangeGummy'>
-                <PillComponent 
-                  imageSource={orangeGummy}
-                  color="ORANGE"
-                  >
-                </PillComponent>
-              </div>
-              <div className='PinkGummy'>
-              <PillComponent 
-                imageSource={pinkGummy}
-                color="PINK"
-                >
-              </PillComponent>
-              </div>
-              <div className='PurpleGummy'>
-              <PillComponent 
-                imageSource={purpleGummy}
-                color="PURPLE"
-                >
-              </PillComponent>
-              </div>
-              <div className='GreenGummy'>
-                <PillComponent 
-                  imageSource={greenGummy}
-                  color="GREEN"
-                  >
-                </PillComponent>
-              </div>
-            </div>
-          </div>
-          )
+        return <p>No mission.</p>
     }
   }
 
-  const pillSelectionBody = missionStatement(localStorage.getItem('affinity'))
+
+  const pillSelectionBody = (
+    <div className="State-Entrypoint">
+      <h3>CHOOSE WISELY</h3>
+      <div className='PillSelection'>
+        <div className='YellowGummy'>
+        <PillComponent 
+          imageSource={yellowGummy}
+          color="YELLOW"
+          onClick={() => setHasChosenPill(true)}
+          >
+        </PillComponent>
+        </div>
+        <div className='OrangeGummy'>
+          <PillComponent 
+            imageSource={orangeGummy}
+            color="ORANGE"
+            onClick={() => setHasChosenPill(true)}
+            >
+          </PillComponent>
+        </div>
+        <div className='PinkGummy'>
+        <PillComponent 
+          imageSource={pinkGummy}
+          color="PINK"
+          onClick={() => setHasChosenPill(true)}
+          >
+        </PillComponent>
+        </div>
+        <div className='PurpleGummy'>
+        <PillComponent 
+          imageSource={purpleGummy}
+          color="PURPLE"
+          onClick={() => setHasChosenPill(true)}
+          >
+        </PillComponent>
+        </div>
+        <div className='GreenGummy'>
+          <PillComponent 
+            imageSource={greenGummy}
+            color="GREEN"
+            onClick={() => setHasChosenPill(true)}
+            >
+          </PillComponent>
+        </div>
+      </div>
+    </div>
+  )
 
   useEffect(() => {
     if (hasChosenPill) {
+      console.log("Chose it")
       setTimeout(() => {
-        setCount((count) => count + 1);
+        if (count < 6) {
+          setCount((count) => count + 1);
+          console.log(count)
+        }
       }, 1000)
+
+    console.log("IMPORTANT")
+    const affinity = localStorage.getItem('affinity')
+    switch (affinity) {
+      case "YELLOW":
+        setPlanet(<p>YOUR MISSION WILL BEGIN ON <br />PLANET ESTALAR</p>)
+        break
+      case "ORANGE":
+        setPlanet(<p>YOUR MISSION WILL BEGIN ON <br />PLANET LETHERION</p>)
+        break
+      case "PINK":
+        setPlanet(<p>YOUR MISSION WILL BEGIN ON <br />PLANET DUFAITHAN</p>)
+        break
+      case "PURPLE":
+        setPlanet(<p>YOUR MISSION WILL BEGIN ON <br />PLANET BLON</p>)
+        break
+      case "GREEN":
+        setPlanet(<p>YOUR MISSION WILL BEGIN ON <br />PLANET VATANICA</p>)
+        break
+      default:
+        setPlanet( <p>No mission.</p>)
     }
-  }, [hasChosenPill])
+    
+    } else {
+      console.log("No choice")
+    }
+  }, [count, hasChosenPill])
 
   useEffect(() => {
-    if (count > 10) {
-
+    if(hasClickedEscape) {
+      console.log("Escaped")
+    } else {
+      console.log("No Escape")
     }
-  })
+  }, [hasClickedEscape])
+
 
   const contactEntryBody = (
     <div className="State-EmailEntry">
@@ -128,19 +167,18 @@ function App() {
   )
 
   return (
-    <ChakraProvider>
     <div className="App">
       <div className="container">
         <header className="App-header">
           <h1>THE AMY ABYSS</h1>
             {video}
             {hasClickedEscape === false ? escapeBody : null}
-            {pillSelectionBody}
-            {contactEntryBody}
+            {(hasClickedEscape === true && hasChosenPill === false) ? pillSelectionBody : null}
+            {hasChosenPill === true ? planet : null}
+            {count > 5 ? contactEntryBody : null}
         </header>
       </div>
     </div>
-    </ChakraProvider>
   )
 }
 

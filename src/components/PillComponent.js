@@ -14,6 +14,7 @@ export default class PillComponent extends Component {
     onSelectAffinity() {
         localStorage.setItem('affinity', this.props.color);
         console.log("Selecting affinity: " + this.props.color);
+        this.props.onClick();
     }
 
     // React Life Cycle
