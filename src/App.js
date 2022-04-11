@@ -190,9 +190,9 @@ function App() {
           <h1>THE AMY ABYSS</h1>
             {video}
             {hasClickedEscape === false ? escapeBody : null}
-            {(hasClickedEscape === true && hasClickedSure === false) ? areYouSureBody : null}
-            {(hasClickedSure === true && hasChosenPill === false) ? pillSelectionBody : null}
-            {hasChosenPill === true ? planet : null}
+            {(hasClickedEscape === true && hasChosenPill === false) ? pillSelectionBody : null}
+            {(hasChosenPill === true && hasClickedSure === false) ? areYouSureBody : null}
+            {(hasChosenPill === true && hasClickedSure === true) ? planet : null}
             {count > 5 ? contactEntryBody : null}
         </header>
       </div>

@@ -19,7 +19,11 @@ h1 {
 }
 
 h3 {
-  margin-top: 20%;
+  font-weight: bold;
+}
+
+p {
+  font-weight: bold;
 }
 
 #app {
