@@ -96,7 +96,7 @@ h3 {
 }
 
 .State-EmailEntry p {
-  font-size: 3vmin;
+  font-size: 4vmin;
   padding: 1vmin;
 }
 
@@ -108,7 +108,7 @@ h3 {
 
 .form-control {
   text-align: center;
-  height: min(10vw, 80px);
+  height: min(10vmin, 80px);
 }
 
 input {
@@ -162,19 +162,14 @@ input:focus + .line:after {
 .PillSelection {
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items:center;
   width: 80%;
-  margin: 0px auto;
-}
-
-.PillSelection div {
-  width: 20%;
-  height: 100%;
+  padding-top: min(7vh, 40px);
 }
 
 .PillSelection img {
-  margin-top: 20px;
-  width: 100%;
+  width: min(180px, 12vmin);
+  object-fit: contain; 
 }
 
 img {
