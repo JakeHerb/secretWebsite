@@ -18,45 +18,46 @@ function App() {
   const [hasClickedEscape, setHasClickedEscape] = useState(false)
   const [hasClickedSure, setHasClickedSure] = useState(false)
   const [hasChosenPill, setHasChosenPill] = useState(false)
-  const [count, setCount] = useState(0)
+  const [submitted, setSubmitted] = useState(false)
   const [planet, setPlanet] = useState("")
 
   const video = (
-    <video autoPlay loop muted playsInline >
+    <video loop muted playsInline >
       <source src='https://videosformattswebsite.s3.us-west-2.amazonaws.com/skullVideo_square.mp4' type="video/mp4"/>
     </video>
   )
 
   const escapeBody = (
     <div className="State-Escape">
-          <h3>DO YOU WANT TO ESCAPE?</h3>
-          <div onClick={() => {
-            console.log("CLICK!");
-            setHasClickedEscape(true)
-              }} 
-            className='EscapeSelection'>
-              <p style={{
-                  color: "red",
-                  cursor: "pointer",
-              }}>
-                  YES / NO
-              </p>
-              </div>
+      <h3>DO YOU WANT TO ESCAPE?</h3>
+      <div onClick={() => 
+        {
+        console.log("CLICK!");
+        setHasClickedEscape(true)
+        }} 
+        className='EscapeSelection'
+      >
+        <p style={{
+            color: "red",
+            cursor: "pointer",
+        }}>
+            YES / NO
+        </p>
       </div>
+    </div>
   )
 
   const areYouSureBody = (
     <div className="State-Sure">
-    <h3>THERE ARE RISKS INVOLVED. ARE YOU SURE YOU WANT TO CONTINUE?</h3>
+      <h3>THERE ARE RISKS INVOLVED. ARE YOU SURE YOU WANT TO CONTINUE?</h3>
     <div onClick={() => {
       console.log("CLICK!");
       setHasClickedSure(true)
         }} 
-      className='SureSelection'>
+      className='EscapeSelection'>
         <p style={{
             color: "red",
-            cursor: "pointer",
-            fontSize: "2.0em",
+            cursor: "pointer"
         }}>
             YES / NO
         </p>
@@ -87,12 +88,12 @@ function App() {
       <h3>CHOOSE WISELY</h3>
       <div className='PillSelection'>
         <div className='YellowGummy'>
-        <PillComponent 
-          imageSource={yellowGummy}
-          color="YELLOW"
-          onClick={() => setHasChosenPill(true)}
-          >
-        </PillComponent>
+          <PillComponent 
+            imageSource={yellowGummy}
+            color="YELLOW"
+            onClick={() => setHasChosenPill(true)}
+            >
+          </PillComponent>
         </div>
         <div className='OrangeGummy'>
           <PillComponent 
@@ -103,20 +104,20 @@ function App() {
           </PillComponent>
         </div>
         <div className='PinkGummy'>
-        <PillComponent 
-          imageSource={pinkGummy}
-          color="PINK"
-          onClick={() => setHasChosenPill(true)}
-          >
-        </PillComponent>
+          <PillComponent 
+            imageSource={pinkGummy}
+            color="PINK"
+            onClick={() => setHasChosenPill(true)}
+            >
+          </PillComponent>
         </div>
         <div className='PurpleGummy'>
-        <PillComponent 
-          imageSource={purpleGummy}
-          color="PURPLE"
-          onClick={() => setHasChosenPill(true)}
-          >
-        </PillComponent>
+          <PillComponent 
+            imageSource={purpleGummy}
+            color="PURPLE"
+            onClick={() => setHasChosenPill(true)}
+            >
+          </PillComponent>
         </div>
         <div className='GreenGummy'>
           <PillComponent 
@@ -131,15 +132,6 @@ function App() {
   )
 
   useEffect(() => {
-    if (hasChosenPill) {
-      console.log("Chose it")
-      setTimeout(() => {
-        if (count < 6) {
-          setCount((count) => count + 1);
-          console.log(count)
-        }
-      }, 1000)
-
     console.log("IMPORTANT")
     const affinity = localStorage.getItem('affinity')
     switch (affinity) {
@@ -161,11 +153,8 @@ function App() {
       default:
         setPlanet( <p>No mission.</p>)
     }
-    
-    } else {
-      console.log("No choice")
-    }
-  }, [count, hasChosenPill])
+  
+  }, [hasClickedSure, hasChosenPill])
 
   useEffect(() => {
     if(hasClickedEscape) {
@@ -178,24 +167,22 @@ function App() {
 
   const contactEntryBody = (
     <div className="State-EmailEntry">
-      <InputTransformComponent/>
+      <InputTransformComponent onSubmit={() => setSubmitted(true)}/>
+      {submitted === true ? planet : null}
     </div> 
   )
 
   return (
     <div className="App">
-      <div className="container">
-        <header className="App-header">
-          <h1>THE AMIABIS</h1>
-            {video}
-        </header>
-      </div>
+      <header className="App-header">
+        <h1>THE AMIABIS</h1>
+          {video}
+      </header>
       <div className='dynamic-content'>
           {hasClickedEscape === false ? escapeBody : null}
           {(hasClickedEscape === true && hasChosenPill === false) ? pillSelectionBody : null}
           {(hasChosenPill === true && hasClickedSure === false) ? areYouSureBody : null}
-          {(hasChosenPill === true && hasClickedSure === true) ? planet : null}
-          {count > 5 ? contactEntryBody : null}
+          {(hasChosenPill === true && hasClickedSure === true) ? contactEntryBody : null}
         </div>
     </div>
   )

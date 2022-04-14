@@ -6,7 +6,12 @@
 * {
   font-family: 'Helvetica Neue', 'Roboto', sans-serif;
   font-weight: bold;
-} 
+}
+
+body{
+  margin: 0;
+  padding: 0;
+}
 
 h1 {
   padding-top: 0px;
@@ -14,16 +19,32 @@ h1 {
   z-index: 10;
   margin-top: 0px;
   margin-bottom: 0px;
-  font-size: 7vmin;
+  font-size: 9vmin;
 }
 
 h3 {
-  margin-top: 20%;
   font-size: 4vmin;
+  display: flex;
+  margin: 0;
+  padding: 0;
 }
 
-#app {
-  width: 100%;
+.App-header {
+  position: fixed;
+  left: 50%;
+  transform: translateX(-50%);
+  top: 0px;
+  background-color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: rgb(0, 0, 0);
+  width: min(90vw, 800px);
+}
+
+.App-header video{
+  background-color: #ffffff;
+  width: min(80vw, 650px);
 }
 
 .dynamic-content {
@@ -31,35 +52,52 @@ h3 {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-end;
   color: rgb(0, 0, 0);
   position: fixed;
+  left: 50%;
+  transform: translateX(-50%);
   bottom: 0px;
-  width: 100vw;
+  width: min(85vw, 750px);
+  padding-bottom: min(7vh,80px);
+}
+
+.dynamic-content p {
+  font-size: 8vmin;
+  margin: 0;
+  padding: 0;
+}
+
+.State-Escape {
+  margin: 0;
+  padding: 0;
 }
 
 .EscapeSelection {
-  position: relative;
-  margin: 0px;
+  margin: 0;
+  padding: 0;
 }
 
-.EscapeSelection p {
-  margin-top: 0%;
-  font-size: 8vmin;
-}
-
-.App-header {
-  background-color: #ffffff;
+.State-Entrypoint {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  color: rgb(0, 0, 0);
 }
 
-.App-header video{
-  background-color: #ffffff;
-  width: min(80vw, 500px);
+.State-Sure {
+  margin: 0;
+  padding: 0;
+}
+
+.State-EmailEntry {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.State-EmailEntry p {
+  font-size: 3vmin;
+  padding: 1vmin;
 }
 
 /* start input form CSS */
@@ -70,6 +108,7 @@ h3 {
 
 .form-control {
   text-align: center;
+  height: min(10vw, 80px);
 }
 
 input {
@@ -78,7 +117,7 @@ input {
   outline: none;
   width: 80vw;
   max-width: 400px;
-  font-size: 1.0em;
+  font-size: 4vmin;
   transition: padding 0.3s 0.2s ease;
 }
 input:focus {
@@ -107,19 +146,16 @@ input:focus + .line:after {
   transition: transform 0.3s ease;
   background: #a0a0a0;
 }
+
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: red;
+  opacity: 0.7; /* Firefox */
+}
 /* end input for CSS */
 
-body {
-  min-height: 100vh;
-  align-items: center;
-  justify-content: center;
-  margin: 0px;
-  padding: 0px;
-  overscroll-behavior: contain;
-}
 
 .InputSpace {
-  height: 50px !important;
+  height: min(50pxe) !important;
   width: 400px;
 }
 

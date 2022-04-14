@@ -5,6 +5,7 @@ import { createContact } from '../graphql/mutations'
 export default class InputTransformComponent extends Component {
     constructor(props) {
         super(props);
+        this.planet = this.props.planet;
         this.onSubmit = this.onSubmit.bind(this);
         this.onChange = this.onChange.bind(this);
         this.state = {
@@ -97,6 +98,7 @@ export default class InputTransformComponent extends Component {
                   <br />NOT EVERYONE IS WORTHY
                   </p>
                 </div>
+                {this.props.planet}
             </div>
         )
 
