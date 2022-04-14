@@ -168,6 +168,7 @@ input:focus + .line:after {
 
 .PillSelection img {
   width: min(180px, 12vmin);
+  height: min(180px, 12vmin);
   object-fit: contain; 
 }
 
