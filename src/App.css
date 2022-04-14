@@ -109,14 +109,13 @@ h3 {
 .form-control {
   text-align: center;
   height: min(10vmin, 80px);
+  margin-top: min(10vh, 80px);
 }
 
 input {
   background: 0;
   border: 0;
   outline: none;
-  width: 80vw;
-  max-width: 400px;
   font-size: 4vmin;
   transition: padding 0.3s 0.2s ease;
 }
@@ -149,7 +148,7 @@ input:focus + .line:after {
 
 ::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
   color: red;
-  opacity: 0.7; /* Firefox */
+  opacity: 1.0; /* Firefox */
 }
 /* end input for CSS */
 

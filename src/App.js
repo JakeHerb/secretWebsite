@@ -49,7 +49,7 @@ function App() {
 
   const areYouSureBody = (
     <div className="State-Sure">
-      <h3>THERE ARE RISKS INVOLVED. ARE YOU SURE YOU WANT TO CONTINUE?</h3>
+      <h3>THERE ARE RISKS INVOLVED<br />ARE YOU SURE YOU WANT TO CONTINUE?</h3>
     <div onClick={() => {
       console.log("CLICK!");
       setHasClickedSure(true)
@@ -167,8 +167,7 @@ function App() {
 
   const contactEntryBody = (
     <div className="State-EmailEntry">
-      <InputTransformComponent onSubmit={() => setSubmitted(true)}/>
-      {submitted === true ? planet : null}
+      <InputTransformComponent planetText={planet}/>
     </div> 
   )
 
