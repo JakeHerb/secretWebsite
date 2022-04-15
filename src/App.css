@@ -1,6 +1,14 @@
+@media only screen and (min-width: 8000px) {
+  body {
+    background-color: rebeccapurple;
+  }
+}
+
+
 .App {
   text-align: center;
   height: 100vh;
+  width: min(100vw, 800px);
 }
 
 * {
@@ -19,7 +27,7 @@ h1 {
   z-index: 10;
   margin-top: 0px;
   margin-bottom: 0px;
-  font-size: 9vmin;
+  font-size: min(120px, 15vw);
 }
 
 h3 {
@@ -39,12 +47,12 @@ h3 {
   flex-direction: column;
   align-items: center;
   color: rgb(0, 0, 0);
-  width: min(90vw, 800px);
+  width: min(100vw, 800px);
 }
 
 .App-header video{
   background-color: #ffffff;
-  width: min(80vw, 650px);
+  width: min(80vw, 640px);
 }
 
 .dynamic-content {
@@ -58,7 +66,7 @@ h3 {
   left: 50%;
   transform: translateX(-50%);
   bottom: 0px;
-  width: min(85vw, 750px);
+  width: min(100vw, 800px);
   padding-bottom: min(7vh,80px);
 }
 
@@ -73,9 +81,18 @@ h3 {
   padding: 0;
 }
 
+.State-Escape h3 {
+  /* font-size: 6vw; */
+  font-size: min(6vw, 50px);
+}
+
 .EscapeSelection {
   margin: 0;
   padding: 0;
+}
+
+.EscapeSelection p {
+  font-size: min(8vw, 80px);
 }
 
 .State-Entrypoint {
@@ -84,9 +101,17 @@ h3 {
   align-items: center;
 }
 
+.State-Entrypoint h3 {
+  font-size: min(6vw, 50px);
+}
+
 .State-Sure {
   margin: 0;
   padding: 0;
+}
+
+.State-Sure  h3 {
+  font-size: min(6vw, 50px);
 }
 
 .State-EmailEntry {
@@ -96,7 +121,7 @@ h3 {
 }
 
 .State-EmailEntry p {
-  font-size: 4vmin;
+  font-size: min(50px, 6vmin);
   padding: 1vmin;
 }
 
@@ -116,7 +141,7 @@ input {
   background: 0;
   border: 0;
   outline: none;
-  font-size: 4vmin;
+  font-size: min(50px, 6vmin);
   transition: padding 0.3s 0.2s ease;
 }
 input:focus {
@@ -162,16 +187,18 @@ input:focus + .line:after {
   display: flex;
   justify-content: center;
   align-items:center;
-  width: 80%;
+  width: 100%;
   padding-top: min(7vh, 40px);
 }
 
 .PillSelection img {
-  width: min(180px, 12vmin);
-  height: min(180px, 12vmin);
+  width: min(150px, 20vw);
+  height: min(150px, 20vw);
   object-fit: contain; 
 }
 
 img {
   cursor: pointer;
+  max-width: 100%;
+  display: block;
 }
