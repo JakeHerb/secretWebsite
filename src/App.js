@@ -49,7 +49,7 @@ function App() {
 
   const areYouSureBody = (
     <div className="State-Sure">
-      <h3>THERE ARE RISKS INVOLVED<br />ARE YOU SURE YOU WANT TO CONTINUE?</h3>
+      <h3>THERE ARE RISKS INVOLVED.<br />DO YOU WANT TO CONTINUE?</h3>
     <div onClick={() => {
       console.log("CLICK!");
       setHasClickedSure(true)
@@ -64,24 +64,6 @@ function App() {
         </div>
 </div>
   )
-
-  const useFindPlanet = (pillColor) => {
-    switch (pillColor) {
-      case "YELLOW":
-        return <p>YOUR MISSION WILL BEGIN ON <br />PLANET ESTALAR</p>
-      case "ORANGE":
-        return <p>YOUR MISSION WILL BEGIN ON <br />PLANET LETHERION</p>
-      case "PINK":
-        return  <p>YOUR MISSION WILL BEGIN ON <br />PLANET DUFAITHAN</p>
-      case "PURPLE":
-        return <p>YOUR MISSION WILL BEGIN ON <br />PLANET BLON</p>
-      case "GREEN":
-        return  <p>YOUR MISSION WILL BEGIN ON <br />PLANET VATANICA</p>
-      default:
-        return <p>No mission.</p>
-    }
-  }
-
 
   const pillSelectionBody = (
     <div className="State-Entrypoint">

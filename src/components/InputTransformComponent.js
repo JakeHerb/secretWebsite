@@ -13,6 +13,24 @@ export default class InputTransformComponent extends Component {
             submitted: false
         }
     }
+    
+  usePlanet(pillColor) {
+    switch (pillColor) {
+      case "YELLOW":
+        return "ESTALAR"
+      case "ORANGE":
+        return "LETHERION"
+      case "PINK":
+        return "DUFAITHAN"
+      case "PURPLE":
+        return "BLON"
+      case "GREEN":
+        return "VATANICA"
+      default:
+        return "EARTH"
+    }
+  }
+
     // Form Events
     onChange(e) {
         console.log("CHANGING!: " + e.target.value);
@@ -26,7 +44,8 @@ export default class InputTransformComponent extends Component {
         e.preventDefault()
         console.log("Submit! Email: " + this.state.email);
         const email = this.state.email
-        const affinity = "Jake"
+        const storedColor = localStorage.getItem('affinity')
+        const affinity = this.usePlanet(storedColor)
         this.setState({
             email: e.target.value,
             submitted: true
@@ -92,7 +111,7 @@ export default class InputTransformComponent extends Component {
         const submittedPage = (
               <div className="State-onsubmit">
                 <div>
-                  <p>YOU ARE # 362
+                  <p>YOU ARE IN WAVE ONE
                   <br />WE WILL BE IN CONTACT
                   <br />IF YOU MADE THE LIST
                   <br />NOT EVERYONE IS WORTHY
