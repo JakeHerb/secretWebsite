@@ -33,7 +33,6 @@ export default class InputTransformComponent extends Component {
 
     // Form Events
     onChange(e) {
-        console.log("CHANGING!: " + e.target.value);
         this.setState({
             email: e.target.value,
             submitted: false
@@ -42,7 +41,7 @@ export default class InputTransformComponent extends Component {
 
     async onSubmit(e) {
         e.preventDefault()
-        console.log("Submit! Email: " + this.state.email);
+        console.log("WHAT HAVE YOU DONE " + this.state.email);
         const email = this.state.email
         const storedColor = localStorage.getItem('affinity')
         const affinity = this.usePlanet(storedColor)

@@ -22,7 +22,7 @@ exports.handler = async event => {
             Subject: { Data: 'TEST'},
             Body: {
               Text: {
-                Data: `My email is ${userEmail} and my mission begins on PLANET ${userAffinity}`,
+                Data: `New Email:  ${userEmail} - Their mission begins on planet ${userAffinity}`,
               },
             },
           },

@@ -32,7 +32,7 @@ function App() {
       <h3>DO YOU WANT TO ESCAPE?</h3>
       <div onClick={() => 
         {
-        console.log("CLICK!");
+        console.log("THERE IS NO ESCAPE");
         setHasClickedEscape(true)
         }} 
         className='EscapeSelection'
@@ -51,7 +51,7 @@ function App() {
     <div className="State-Sure">
       <h3>THERE ARE RISKS INVOLVED.<br />DO YOU WANT TO CONTINUE?</h3>
     <div onClick={() => {
-      console.log("CLICK!");
+      console.log("YOU MAY NOT SURVIVE");
       setHasClickedSure(true)
         }} 
       className='EscapeSelection'>
@@ -114,7 +114,7 @@ function App() {
   )
 
   useEffect(() => {
-    console.log("IMPORTANT")
+    console.log("HAVE YOU MADE THE RIGHT CHOICE?")
     const affinity = localStorage.getItem('affinity')
     switch (affinity) {
       case "YELLOW":
@@ -140,9 +140,9 @@ function App() {
 
   useEffect(() => {
     if(hasClickedEscape) {
-      console.log("Escaped")
+      console.log("WHY FIGHT")
     } else {
-      console.log("No Escape")
+      console.log("WHY STRUGGLE")
     }
   }, [hasClickedEscape])
 

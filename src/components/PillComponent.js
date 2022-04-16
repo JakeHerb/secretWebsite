@@ -13,7 +13,6 @@ export default class PillComponent extends Component {
     // Form Events
     onSelectAffinity() {
         localStorage.setItem('affinity', this.props.color);
-        console.log("Selecting affinity: " + this.props.color);
         this.props.onClick();
     }
 
@@ -21,7 +20,6 @@ export default class PillComponent extends Component {
     componentDidMount() {}
 
     render() {
-        console.log("rendering")
        return (
             <img
                 onClick={this.onSelectAffinity}
