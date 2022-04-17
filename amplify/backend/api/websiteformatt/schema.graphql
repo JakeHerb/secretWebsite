@@ -1,7 +1,7 @@
 type Contact @model 
 @auth(
   rules: [
-    {allow: public, operations: [create]}
+    {allow: public, operations: [create, read]}
     ]
   ) 
   {
@@ -9,7 +9,6 @@ type Contact @model
   email: AWSEmail!
   affinity: String!
 }
-
 
 type VodAsset @model (subscriptions: {level: public})
 @auth(

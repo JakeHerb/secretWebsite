@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { API } from 'aws-amplify'
 import { createContact } from '../graphql/mutations'
+import * as queries from '../graphql/queries'
 
 export default class InputTransformComponent extends Component {
     constructor(props) {
@@ -59,6 +60,12 @@ export default class InputTransformComponent extends Component {
                       }
                   }
               })
+              const allUsers = await API.graphql({
+                query: queries.listContacts,
+                authMode: 'AWS_IAM'
+              });
+            console.log("About to log contacts!");
+            console.log(allUsers);
             } catch (e) {
                 console.log("Error: Signals blurred")
                 console.log(e)

@@ -55,7 +55,8 @@ export const schema = {
                             {
                                 "allow": "public",
                                 "operations": [
-                                    "create"
+                                    "create",
+                                    "read"
                                 ]
                             }
                         ]

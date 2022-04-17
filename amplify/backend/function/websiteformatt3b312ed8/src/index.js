@@ -19,7 +19,7 @@ exports.handler = async event => {
           },
           Source: process.env.SES_EMAIL,
           Message: {
-            Subject: { Data: 'TEST'},
+            Subject: { Data: 'New Recruit'},
             Body: {
               Text: {
                 Data: `New Email:  ${userEmail} - Their mission begins on planet ${userAffinity}`,
@@ -32,6 +32,7 @@ exports.handler = async event => {
   }
   console.log(`EVENT: ${JSON.stringify(event)}`);
   event.Records.forEach(record => {
+    console.log("Hi, I'm an event");
     console.log(record.eventID);
     console.log(record.eventName);
     console.log('DynamoDB Record: %j', record.dynamodb);
