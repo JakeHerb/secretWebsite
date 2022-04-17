@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { API } from 'aws-amplify'
+import { API, input } from 'aws-amplify'
 import { createContact } from '../graphql/mutations'
 import * as queries from '../graphql/queries'
 
@@ -60,12 +60,6 @@ export default class InputTransformComponent extends Component {
                       }
                   }
               })
-              const allUsers = await API.graphql({
-                query: queries.listContacts,
-                authMode: 'AWS_IAM'
-              });
-            console.log("About to log contacts!");
-            console.log(allUsers);
             } catch (e) {
                 console.log("Error: Signals blurred")
                 console.log(e)
@@ -92,6 +86,7 @@ export default class InputTransformComponent extends Component {
     }
 
     render() {
+        // <p type="submit" onClick={() => {this.onSubmit}}>[SUBMIT]</p
         const form = (
             <>
             <p>ENTER YOUR EMAIL FOR A <br/>
@@ -108,6 +103,7 @@ export default class InputTransformComponent extends Component {
                             onSubmit={this.onSubmit} 
                             value={this.state.email}
                         />
+                        {this.state.email !== '' ? (<button>[SUBMIT]</button>) : null}
                     </div>
                 </form>
             </div>

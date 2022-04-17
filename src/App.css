@@ -129,6 +129,22 @@ h1 {
   justify-content: center;
 }
 
+.email-container button {
+  text-align: center;
+  color: red;
+  background-color: #ffffff;
+  height: min(10vmin, 80px);
+  margin-top: min(4vh, 80px);
+  cursor: pointer;
+  background: none;
+	border: none;
+	padding: 0;
+	font: inherit;
+	cursor: pointer;
+	outline: inherit;
+  font-size: min(50px, 6vmin);
+}
+
 .form-control {
   text-align: center;
   height: min(10vmin, 80px);
@@ -191,33 +207,3 @@ img {
   max-width: 100%;
   display: block;
 }
-
-/* @media only screen and (max-height: 800px) {
-  body {
-    background-color: rebeccapurple;
-  }
-  h1 {
-    font-size: min(120px, 15vh);
-  }
-  .App-header video{
-    height: min(50vh, 640px);
-  }
-  .dynamic-content {
-    width: min(100vw, 800px);
-    padding-bottom: min(3vh, 40px);
-    background-color: blue;
-  }
-  
-  .dynamic-content p {
-    font-size: min(10vh, 80px);
-  }
-
-  .State-EmailEntry p {
-    font-size: min(50px, 6vmin);
-    padding: 1vmin;
-  }
-
-  .PillSelection {
-    padding-top: 0vh
-  }
-} */
