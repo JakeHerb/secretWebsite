@@ -55,7 +55,7 @@ h1 {
 }
 
 .dynamic-content p {
-  font-size: min(80px, min(10vw, 10vh));
+  font-size: min(80px, 10vmin);
   margin: 0;
   padding: 0;
 }
@@ -66,7 +66,7 @@ h1 {
 }
 
 .State-Escape h3 {
-  font-size: min(50px, min(7vw, 7vh));
+  font-size: min(40px, 7vmin);
 }
 
 .EscapeSelection {
@@ -84,7 +84,7 @@ h1 {
 }
 
 .State-Entrypoint h3 {
-  font-size: min(50px, min(6vw, 6vh));
+  font-size: min(40px, 6vmin);
   margin: 0;
   padding: 0;
 }
@@ -97,8 +97,8 @@ h1 {
 }
 
 .PillSelection img {
-  width: min(150px, min(20vw, 20vh));
-  height: min(150px, min(20vw, 20vh));
+  width: min(150px, 20vmin);
+  height: min(150px, 20vmin);
   object-fit: contain; 
 }
 
@@ -108,7 +108,7 @@ h1 {
 }
 
 .State-Sure  h3 {
-  font-size: min(50px, min(6vw, 6vh));
+  font-size: min(40px, min(6vw, 6vh));
   margin-bottom: 1vh;
 }
 
@@ -119,7 +119,7 @@ h1 {
 }
 
 .State-EmailEntry p {
-  font-size: min(50px, 6vmin);
+  font-size: min(40px, 6vmin);
   padding: 1vmin;
 }
 
