@@ -1,8 +1,6 @@
 import './App.css'
 import Amplify from 'aws-amplify'
 import config from './aws-exports'
-import { ChakraProvider, ControlBox, setScript, useShortcut } from '@chakra-ui/react'
-import { ContactFormModal } from './components/ContactFormModal'
 import PillComponent from './components/PillComponent'
 import pinkGummy from './media/images/pink_gummy.png'
 import greenGummy from './media/images/green_gummy.png'
@@ -156,7 +154,7 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <h1>THE AMIABIS</h1>
+        <h1 className='Header-text'>THE AMIABIS</h1>
           {video}
       </header>
       <div className='dynamic-content'>

@@ -1,8 +1,17 @@
 
 .App {
+  position: relative;
   text-align: center;
-  height: 100vh;
-  width: 100vw
+  left: 50%;
+  transform: translateX(-50%);
+  top: 0px;
+  background-color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: rgb(0, 0, 0);
+  width: min(100vw, 500px);
+  height: 100vw;
 }
 
 * {
@@ -15,30 +24,25 @@ body{
   padding: 0;
 }
 
-h1 {
-  padding-top: 0px;
-  position: relative;
-  z-index: 10;
-  margin-top: 0px;
-  margin-bottom: 0px;
-  font-size: min(120px, min(15vw, 15vh));
-}
-
 .App-header {
-  position: fixed;
-  left: 50%;
-  transform: translateX(-50%);
-  top: 0px;
-  background-color: #ffffff;
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
-  color: rgb(0, 0, 0);
-  width: min(100vw, 800px);
+  width: 100%;
+}
+
+.App-header h1 {
+  padding-top: 0px;
+  position: relative;
+  margin-top: 0px;
+  margin-bottom: 0px;
+  width: 100%;
+  font-size: min(475%, 15vw);
 }
 
 .App-header video{
-  width: min(640px, min(80vw, 50vh));
+  width: 100%;
 }
 
 .dynamic-content {
@@ -46,11 +50,8 @@ h1 {
   flex-direction: column;
   align-items: center;
   color: rgb(0, 0, 0);
-  position: fixed;
-  left: 50%;
-  transform: translateX(-50%);
-  bottom: 0px;
-  width: min(100vw, 800px);
+  position: relative;
+  width: 100%;
   padding-bottom: min(80px, 5vh);
 }
 
@@ -66,7 +67,7 @@ h1 {
 }
 
 .State-Escape h3 {
-  font-size: min(50px, 7vmin);
+  font-size: min(210%, 7vmin);
 }
 
 .EscapeSelection {
