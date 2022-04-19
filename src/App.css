@@ -66,7 +66,7 @@ h1 {
 }
 
 .State-Escape h3 {
-  font-size: min(40px, 7vmin);
+  font-size: min(50px, 7vmin);
 }
 
 .EscapeSelection {
@@ -84,7 +84,7 @@ h1 {
 }
 
 .State-Entrypoint h3 {
-  font-size: min(40px, 6vmin);
+  font-size: min(50px, 6vmin);
   margin: 0;
   padding: 0;
 }
@@ -108,7 +108,7 @@ h1 {
 }
 
 .State-Sure  h3 {
-  font-size: min(40px, min(6vw, 6vh));
+  font-size: min(50px, min(6vw, 6vh));
   margin-bottom: 1vh;
 }
 
@@ -119,7 +119,7 @@ h1 {
 }
 
 .State-EmailEntry p {
-  font-size: min(40px, 6vmin);
+  font-size: min(45px, 6vmin);
   padding: 1vmin;
 }
 
@@ -149,13 +149,14 @@ h1 {
   text-align: center;
   height: min(10vmin, 80px);
   margin-top: min(4vh, 80px);
+  width: 100%;
 }
 
 input {
   background: 0;
   border: 0;
   outline: none;
-  font-size: min(50px, 6vmin);
+  font-size: min(60px, 6vmin);
   transition: padding 0.3s 0.2s ease;
 }
 input:focus {
@@ -167,6 +168,8 @@ input:focus + .line:after {
 .field {
   display: flex;
   position: relative;
+  justify-content: center;
+  width: min(640px, 80vmin);
 }
 .field .line {
   width: 100%;
