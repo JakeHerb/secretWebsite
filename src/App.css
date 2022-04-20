@@ -241,4 +241,8 @@ img {
   .App-header h1 {
     font-size: 15vw;
   }
+
+  .dynamic-content {
+    padding-bottom: 30%;
+  }
 }
