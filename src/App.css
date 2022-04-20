@@ -52,10 +52,10 @@ body{
   align-items: center;
   justify-content: flex-end;
   color: rgb(0, 0, 0);
-  position: relative;
   height: 42%;
   width: 100%;
   padding-bottom: 5%;
+  bottom: 0;
   /* border: solid green 1px; */
 }
 
@@ -211,6 +211,7 @@ input:focus + .line:after {
 .State-onsubmit p {
   margin: 0;
   padding: 0;
+  margin-bottom: 1vh;
 }
 
 img {
@@ -220,9 +221,9 @@ img {
 }
 
 @media only screen and (max-width: 600px) {
-  /* body {
+  body {
     background-color: lightblue;
-  } */
+  }
 
   .App {
     width: 100vw;

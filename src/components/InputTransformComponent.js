@@ -1,17 +1,27 @@
 import React, { Component } from 'react';
-import { API, input } from 'aws-amplify'
+import { API } from 'aws-amplify'
 import { createContact } from '../graphql/mutations'
-import * as queries from '../graphql/queries'
 
 export default class InputTransformComponent extends Component {
     constructor(props) {
         super(props);
         this.planet = this.props.planet;
+        var startTime = Math.floor(Date.now() / 1000);
+        console.log(this.startTime);
+        // Value updated by database for queue estimate:
+        startTime -= 1650427898;
+        // To account for server ping we adjust our start time
+        startTime = Math.floor(startTime / 60);
+        const queuePlace = startTime;
+        console.log(this.startTime);
+        // this.placeInLine = 
         this.onSubmit = this.onSubmit.bind(this);
         this.onChange = this.onChange.bind(this);
         this.state = {
             email: '', 
-            submitted: false
+            submitted: false,
+            placeInLine: queuePlace
+
         }
     }
     
@@ -70,9 +80,11 @@ export default class InputTransformComponent extends Component {
     componentDidMount() {
         this.userData = JSON.parse(localStorage.getItem('formData'));
         if (localStorage.getItem('formData')) {
+            const queuPlace = localStorage.getItem('formData');
             this.setState({
                 email: '',
-                submitted: false
+                submitted: false,
+                queuePlace: 0
             })
         } else {
             this.setState({
