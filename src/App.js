@@ -16,7 +16,6 @@ function App() {
   const [hasClickedEscape, setHasClickedEscape] = useState(false)
   const [hasClickedSure, setHasClickedSure] = useState(false)
   const [hasChosenPill, setHasChosenPill] = useState(false)
-  const [submitted, setSubmitted] = useState(false)
   const [planet, setPlanet] = useState("")
 
   const video = (
@@ -25,41 +24,61 @@ function App() {
     </video>
   )
 
+  const yesEscape = <p 
+    style={{
+      color: "red",
+      cursor: "pointer",
+      paddingRight: "2vw"}}
+    onClick={() => 
+      {
+      console.log("THERE IS NO ESCAPE");
+      setHasClickedEscape(true)
+      }}
+  >YES</p>
+
+  const slash = <p> / </p>
+  const noEscape = <p style={{
+    color: "red",
+    cursor: "pointer",
+    paddingLeft: "2vw"}}
+  >NO</p>
+
   const escapeBody = (
     <div className="State-Escape">
       <h3>DO YOU WANT TO ESCAPE?</h3>
-      <div onClick={() => 
-        {
-        console.log("THERE IS NO ESCAPE");
-        setHasClickedEscape(true)
-        }} 
+      <div
         className='EscapeSelection'
       >
-        <p style={{
-            color: "red",
-            cursor: "pointer",
-        }}>
-            YES / NO
-        </p>
+      {yesEscape}{slash}{noEscape}
       </div>
     </div>
   )
 
+  const yesSure = <p 
+  style={{
+    color: "red",
+    cursor: "pointer",
+    paddingRight: "2vw"}}
+  onClick={() => 
+    {
+    console.log("THERE IS NO ESCAPE");
+    setHasClickedSure(true)
+    }}
+>YES</p>
+const noSure = <p style={{
+  color: "red",
+  cursor: "pointer",
+  paddingLeft: "2vw"}}
+>NO</p>
+
   const areYouSureBody = (
     <div className="State-Sure">
       <h3>THERE ARE RISKS INVOLVED.<br />DO YOU WANT TO CONTINUE?</h3>
-    <div onClick={() => {
-      console.log("YOU MAY NOT SURVIVE");
-      setHasClickedSure(true)
-        }} 
-      className='EscapeSelection'>
-        <p style={{
-            color: "red",
-            cursor: "pointer"
-        }}>
-            YES / NO
-        </p>
-        </div>
+      <div
+        className='EscapeSelection'
+      >
+        {yesSure}{slash}{noSure}
+      </div>
 </div>
   )
 

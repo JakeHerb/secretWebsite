@@ -8,8 +8,8 @@
   display: flex;
   flex-direction: column;
   color: rgb(0, 0, 0);
-  min-height: -webkit-fill-available;
   height: 100vh;
+  min-height: -webkit-fill-available;
   aspect-ratio: 968 / 1635;
 }
 
@@ -74,12 +74,17 @@ body{
 }
 
 .EscapeSelection {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
   margin: 0;
   padding: 0;
 }
 
 .EscapeSelection p {
   font-size: 7vh;
+  color: red;
   margin: 0;
   padding: 0;
 }
