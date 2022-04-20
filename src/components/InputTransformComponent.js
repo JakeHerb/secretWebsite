@@ -140,7 +140,7 @@ export default class InputTransformComponent extends Component {
         const submittedPage = (
               <div className="State-onsubmit">
                 <div>
-                  <p>YOU ARE #{this.state.placeInLine} IN LINE
+                  <p>YOU ARE <span style={{color: "red"}}>#{this.state.placeInLine}</span> IN LINE
                   <br />WE WILL BE IN CONTACT
                   <br />IF YOU MADE THE LIST
                   <br />NOT EVERYONE IS WORTHY
