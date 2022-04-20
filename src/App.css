@@ -59,21 +59,16 @@ body{
   /* border: solid green 1px; */
 }
 
-.dynamic-content p {
-  font-size: min(80px, 10vmin);
-  margin: 0;
-  padding: 0;
-}
-
 .State-Escape {
   margin: 0;
   padding: 0;
 }
 
 .State-Escape h3 {
-  font-size: min(210%, 7vmin);
+  font-size: 3.5vh;
   margin: 0;
   padding: 0;
+  padding-bottom: 3%;
 }
 
 .EscapeSelection {
@@ -82,7 +77,7 @@ body{
 }
 
 .EscapeSelection p {
-  font-size: min(420%, 14vmin);
+  font-size: 7vh;
   margin: 0;
   padding: 0;
 }
@@ -97,7 +92,7 @@ body{
 }
 
 .State-Entrypoint h3 {
-  font-size: min(50px, 6vmin);
+  font-size: 4vh;
   margin: 0;
   padding: 0;
 }
@@ -121,7 +116,7 @@ body{
 }
 
 .State-Sure  h3 {
-  font-size: min(50px, min(6vw, 6vh));
+  font-size: 3vh;
   margin-bottom: 1vh;
 }
 
@@ -225,9 +220,9 @@ img {
 }
 
 @media only screen and (max-width: 600px) {
-  /* body {
+  body {
     background-color: lightblue;
-  } */
+  }
 
   .App {
     width: 100vw;
@@ -238,16 +233,16 @@ img {
   }
 }
 
-@media only screen and (max-height: 600px) {
-  /* body {
+/* @media only screen and (max-height: 600px) {
+  body {
     background-color: rgb(12, 241, 0);
-  } */
+  }
 
   .App {
     width: 100vh;
   }
 
-  /* .App-header h1 {
+  .App-header h1 {
     font-size: 15vh;
-  } */
-}
+  }
+} */

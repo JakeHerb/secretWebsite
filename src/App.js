@@ -20,7 +20,7 @@ function App() {
   const [planet, setPlanet] = useState("")
 
   const video = (
-    <video loop muted playsInline >
+    <video autoPlay loop muted playsInline >
       <source src='https://videosformattswebsite.s3.us-west-2.amazonaws.com/skullVideo_square.mp4' type="video/mp4"/>
     </video>
   )
