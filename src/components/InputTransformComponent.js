@@ -6,22 +6,13 @@ export default class InputTransformComponent extends Component {
     constructor(props) {
         super(props);
         this.planet = this.props.planet;
-        var startTime = Math.floor(Date.now() / 1000);
-        console.log(this.startTime);
-        // Value updated by database for queue estimate:
-        startTime -= 1650427898;
-        // To account for server ping we adjust our start time
-        startTime = Math.floor(startTime / 60);
-        const queuePlace = startTime;
-        console.log(this.startTime);
         // this.placeInLine = 
         this.onSubmit = this.onSubmit.bind(this);
         this.onChange = this.onChange.bind(this);
         this.state = {
             email: '', 
             submitted: false,
-            placeInLine: queuePlace
-
+            placeInLine: 0
         }
     }
     
@@ -44,9 +35,12 @@ export default class InputTransformComponent extends Component {
 
     // Form Events
     onChange(e) {
+        const queuePlace = this.state.placeInLine;
+        const email = this.state.email
         this.setState({
             email: e.target.value,
-            submitted: false
+            submitted: false,
+            placeInLine: queuePlace
         });
     }
 
@@ -56,9 +50,12 @@ export default class InputTransformComponent extends Component {
         const email = this.state.email
         const storedColor = localStorage.getItem('affinity')
         const affinity = this.usePlanet(storedColor)
+        const queuePlace = this.state.placeInLine;
+
         this.setState({
-            email: e.target.value,
-            submitted: true
+            email: email,
+            submitted: true,
+            placeInLine: queuePlace
         })
         if (this.state.email !== '') {
             try {
@@ -79,17 +76,36 @@ export default class InputTransformComponent extends Component {
     // React Life Cycle
     componentDidMount() {
         this.userData = JSON.parse(localStorage.getItem('formData'));
-        if (localStorage.getItem('formData')) {
-            const queuPlace = localStorage.getItem('formData');
+        if (localStorage.getItem('formData').email) {
+            if (localStorage.getItem('formData').placeInLine) {
+                this.setState({
+                    email: localStorage.getItem('formData').email,
+                    submitted: false,
+                    placeInLine: localStorage.getItem('formData').placeInLine
+                })
+            }
+            var startTime = Math.floor(Date.now() / 1000);
+            // Value updated by database for queue estimate:
+            startTime -= 1650427898;
+            // To account for server ping we adjust our start time
+            startTime = Math.floor(startTime / 60);
+            const queuePlace = startTime;
             this.setState({
                 email: '',
                 submitted: false,
-                queuePlace: 0
+                placeInLine: queuePlace
             })
         } else {
+            var startTime = Math.floor(Date.now() / 1000);
+            // Value updated by database for queue estimate:
+            startTime -= 1650427898;
+            // To account for server ping we adjust our start time
+            startTime = Math.floor(startTime / 60);
+            const queuePlace = startTime;
             this.setState({
                 email: '',
-                submitted: false
+                submitted: false,
+                placeInLine: queuePlace
             })
         }
     }
@@ -98,7 +114,6 @@ export default class InputTransformComponent extends Component {
     }
 
     render() {
-        // <p type="submit" onClick={() => {this.onSubmit}}>[SUBMIT]</p
         const form = (
             <>
             <p>ENTER YOUR EMAIL FOR A <br/>
@@ -125,7 +140,7 @@ export default class InputTransformComponent extends Component {
         const submittedPage = (
               <div className="State-onsubmit">
                 <div>
-                  <p>YOU ARE IN WAVE ONE
+                  <p>YOU ARE #{this.state.placeInLine} IN LINE
                   <br />WE WILL BE IN CONTACT
                   <br />IF YOU MADE THE LIST
                   <br />NOT EVERYONE IS WORTHY

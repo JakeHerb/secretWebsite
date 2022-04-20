@@ -43,7 +43,8 @@ body{
 }
 
 .App-header video{
-  width: min(90%, 45.5vh);
+  width: min(90%, 45vh);
+  margin: -1px;
 }
 
 .dynamic-content {
@@ -65,7 +66,7 @@ body{
 }
 
 .State-Escape h3 {
-  font-size: 3.5vh;
+  font-size: 3.1vh;
   margin: 0;
   padding: 0;
   padding-bottom: 3%;
@@ -212,6 +213,7 @@ input:focus + .line:after {
   margin: 0;
   padding: 0;
   margin-bottom: 1vh;
+  font-size: 3.1vh;
 }
 
 img {
