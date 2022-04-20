@@ -127,7 +127,7 @@ body{
 }
 
 .State-EmailEntry p {
-  font-size: min(45px, 6vmin);
+  font-size: 3vh;
   padding: 1vmin;
 }
 
@@ -141,8 +141,8 @@ body{
   text-align: center;
   color: red;
   background-color: #ffffff;
-  height: min(10vmin, 80px);
-  margin-top: min(4vh, 80px);
+  height: 10vh;
+  margin-top: 4vh;
   cursor: pointer;
   background: none;
 	border: none;
@@ -155,8 +155,8 @@ body{
 
 .form-control {
   text-align: center;
-  height: min(10vmin, 80px);
-  margin-top: min(4vh, 80px);
+  height:10vh;
+  margin-top: 4vh;
   width: 100%;
 }
 
@@ -164,7 +164,7 @@ input {
   background: 0;
   border: 0;
   outline: none;
-  font-size: min(60px, 6vmin);
+  font-size: 4vh;
   transition: padding 0.3s 0.2s ease;
 }
 input:focus {
@@ -220,9 +220,9 @@ img {
 }
 
 @media only screen and (max-width: 600px) {
-  /* body {
+  body {
     background-color: lightblue;
-  } */
+  }
 
   .App {
     width: 100vw;
@@ -232,17 +232,3 @@ img {
     font-size: 15vw;
   }
 }
-
-/* @media only screen and (max-height: 600px) {
-  body {
-    background-color: rgb(12, 241, 0);
-  }
-
-  .App {
-    width: 100vh;
-  }
-
-  .App-header h1 {
-    font-size: 15vh;
-  }
-} */
