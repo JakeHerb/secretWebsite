@@ -225,9 +225,9 @@ img {
 }
 
 @media only screen and (max-width: 600px) {
-  body {
+  /* body {
     background-color: lightblue;
-  }
+  } */
 
   .App {
     width: 100vw;
@@ -239,9 +239,9 @@ img {
 }
 
 @media only screen and (max-height: 600px) {
-  body {
+  /* body {
     background-color: rgb(12, 241, 0);
-  }
+  } */
 
   .App {
     width: 100vh;
