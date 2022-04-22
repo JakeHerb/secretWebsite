@@ -14,6 +14,8 @@ Amplify.configure(config)
 function App() {
 
   const [hasClickedEscape, setHasClickedEscape] = useState(false)
+  const [isStuck, setIsStuck] = useState(false)
+  const [cannotHandleRisk, setCannotHandleRisk] = useState(false)
   const [hasClickedSure, setHasClickedSure] = useState(false)
   const [hasChosenPill, setHasChosenPill] = useState(false)
   const [planet, setPlanet] = useState("")
@@ -31,16 +33,21 @@ function App() {
       paddingRight: "2vw"}}
     onClick={() => 
       {
-      console.log("THERE IS NO ESCAPE");
-      setHasClickedEscape(true)
+        setHasClickedEscape(true)
       }}
   >YES</p>
 
   const slash = <p> / </p>
-  const noEscape = <p style={{
-    color: "red",
-    cursor: "pointer",
-    paddingLeft: "2vw"}}
+  const noEscape = <p 
+    style={{
+      color: "red",
+      cursor: "pointer",
+      paddingLeft: "2vw"}}
+    onClick={() => 
+      {
+        setIsStuck(true);
+        console.log("CLick")
+      }}
   >NO</p>
 
   const escapeBody = (
@@ -54,6 +61,13 @@ function App() {
     </div>
   )
 
+  const comeBacktext = <p
+    style={{
+      color: "red",
+      fontSize: "4vh",
+      fontWeight: "bold"}}
+    >COME BACK WHEN<br />YOU'RE READY</p>;
+
   const yesSure = <p 
   style={{
     color: "red",
@@ -65,10 +79,16 @@ function App() {
     setHasClickedSure(true)
     }}
 >YES</p>
-const noSure = <p style={{
-  color: "red",
-  cursor: "pointer",
-  paddingLeft: "2vw"}}
+
+const noSure = <p 
+  style={{
+    color: "red",
+    cursor: "pointer",
+    paddingLeft: "2vw"}}
+  onClick={() => 
+    {
+      setCannotHandleRisk(true);
+    }}
 >NO</p>
 
   const areYouSureBody = (
@@ -81,6 +101,13 @@ const noSure = <p style={{
       </div>
 </div>
   )
+
+const notSuretext = <p
+  style={{
+    color: "red",
+    fontSize: "3.2vh",
+    fontWeight: "bold"}}
+  >THAT IS WHY NO ONE WILL<br />REMEMBER YOUR NAME</p>;
 
   const pillSelectionBody = (
     <div className="State-Entrypoint">
@@ -169,6 +196,7 @@ const noSure = <p style={{
       <InputTransformComponent planetText={planet}/>
     </div> 
   )
+  // isStuck === false && cannotHandleRisk === false
 
   return (
     <div className="App">
@@ -177,11 +205,14 @@ const noSure = <p style={{
           {video}
       </header>
       <div className='dynamic-content'>
-          {hasClickedEscape === false ? escapeBody : null}
-          {(hasClickedEscape === true && hasChosenPill === false) ? pillSelectionBody : null}
-          {(hasChosenPill === true && hasClickedSure === false) ? areYouSureBody : null}
-          {(hasChosenPill === true && hasClickedSure === true) ? contactEntryBody : null}
-        </div>
+        {(isStuck === true) ? comeBacktext : null}
+        {(hasClickedEscape === false && isStuck === false) ? escapeBody : null}
+        {(hasClickedEscape === true && hasChosenPill === false) ? pillSelectionBody : null}
+        {(hasChosenPill === true && hasClickedSure === false && cannotHandleRisk === false) ? areYouSureBody : null}
+        {(cannotHandleRisk === true) ? notSuretext : null}
+        {(hasChosenPill === true && hasClickedSure === true) ? contactEntryBody : null}
+        
+      </div>
     </div>
   )
 }
