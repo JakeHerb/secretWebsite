@@ -4,12 +4,11 @@ type Contact @model
     {allow: public, operations: [create, read]}
     ]
   )
-@key(name: "contactsByEmail", fields: [email], queryField: "contactsByEmail")
   {
   id: ID!
-  email: AWSEmail!
+  email: AWSEmail! @primaryKey
   affinity: String!
-  placeInQueue: INT!
+  placeInQueue: Int!
 }
 
 type Counter @model
