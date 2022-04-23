@@ -1,6 +1,20 @@
 import React, { Component } from 'react';
 import { API } from 'aws-amplify'
 import { createContact } from '../graphql/mutations'
+import * as queries from '../graphql/queries';
+
+const listContactEmails = /* GraphQL */ `
+  query ListContacts(
+    $limit: Int
+  ) {
+    listContacts(limit: $limit) {
+      items {
+        email
+        affinity
+      }
+    }
+  }
+`;
 
 export default class InputTransformComponent extends Component {
     constructor(props) {
@@ -58,6 +72,10 @@ export default class InputTransformComponent extends Component {
             placeInLine: queuePlace
         })
         if (this.state.email !== '') {
+            console.log("BEFORE");
+            const allContacts = await API.graphql({query: listContactEmails, variables: {limit: 1000}});
+            console.log("After. Here come the contacts:");
+            console.log(allContacts);
             try {
               await API.graphql({
                   query: createContact,

@@ -64,7 +64,7 @@ function App() {
   const comeBacktext = <p
     style={{
       color: "red",
-      fontSize: "4vh",
+      fontSize: "3vh",
       fontWeight: "bold"}}
     >COME BACK WHEN<br />YOU'RE READY</p>;
 
