@@ -43,6 +43,45 @@ export const onDeleteContact = /* GraphQL */ `
     }
   }
 `;
+export const onCreateQueueCount = /* GraphQL */ `
+  subscription OnCreateQueueCount {
+    onCreateQueueCount {
+      count
+      id
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+  }
+`;
+export const onUpdateQueueCount = /* GraphQL */ `
+  subscription OnUpdateQueueCount {
+    onUpdateQueueCount {
+      count
+      id
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+  }
+`;
+export const onDeleteQueueCount = /* GraphQL */ `
+  subscription OnDeleteQueueCount {
+    onDeleteQueueCount {
+      count
+      id
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+  }
+`;
 export const onCreateVideoObject = /* GraphQL */ `
   subscription OnCreateVideoObject {
     onCreateVideoObject {

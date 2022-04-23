@@ -4,10 +4,11 @@ import { schema } from './schema';
 
 
 
-const { Contact, VodAsset, VideoObject } = initSchema(schema);
+const { Contact, QueueCount, VodAsset, VideoObject } = initSchema(schema);
 
 export {
   Contact,
+  QueueCount,
   VodAsset,
   VideoObject
 };

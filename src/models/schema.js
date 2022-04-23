@@ -64,6 +64,49 @@ export const schema = {
                 }
             ]
         },
+        "QueueCount": {
+            "name": "QueueCount",
+            "fields": {
+                "id": {
+                    "name": "id",
+                    "isArray": false,
+                    "type": "ID",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "count": {
+                    "name": "count",
+                    "isArray": false,
+                    "type": "Int",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "createdAt": {
+                    "name": "createdAt",
+                    "isArray": false,
+                    "type": "AWSDateTime",
+                    "isRequired": false,
+                    "attributes": [],
+                    "isReadOnly": true
+                },
+                "updatedAt": {
+                    "name": "updatedAt",
+                    "isArray": false,
+                    "type": "AWSDateTime",
+                    "isRequired": false,
+                    "attributes": [],
+                    "isReadOnly": true
+                }
+            },
+            "syncable": true,
+            "pluralName": "QueueCounts",
+            "attributes": [
+                {
+                    "type": "model",
+                    "properties": {}
+                }
+            ]
+        },
         "VodAsset": {
             "name": "VodAsset",
             "fields": {
@@ -232,5 +275,5 @@ export const schema = {
     },
     "enums": {},
     "nonModels": {},
-    "version": "5ba6492fb6991900466a965049696f49"
+    "version": "1f260280ed3a09bb2f3ff41c394e6d59"
 };

@@ -65,6 +65,67 @@ export const syncContacts = /* GraphQL */ `
     }
   }
 `;
+export const getQueueCount = /* GraphQL */ `
+  query GetQueueCount($id: ID!) {
+    getQueueCount(id: $id) {
+      count
+      id
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+  }
+`;
+export const listQueueCounts = /* GraphQL */ `
+  query ListQueueCounts(
+    $filter: ModelQueueCountFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listQueueCounts(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        count
+        id
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
+      nextToken
+      startedAt
+    }
+  }
+`;
+export const syncQueueCounts = /* GraphQL */ `
+  query SyncQueueCounts(
+    $filter: ModelQueueCountFilterInput
+    $limit: Int
+    $nextToken: String
+    $lastSync: AWSTimestamp
+  ) {
+    syncQueueCounts(
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+      lastSync: $lastSync
+    ) {
+      items {
+        count
+        id
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
+      nextToken
+      startedAt
+    }
+  }
+`;
 export const getVodAsset = /* GraphQL */ `
   query GetVodAsset($id: ID!) {
     getVodAsset(id: $id) {

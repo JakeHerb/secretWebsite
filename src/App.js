@@ -184,7 +184,7 @@ const notSuretext = <p
 
   useEffect(() => {
     if(hasClickedEscape) {
-      console.log("WHY FIGHT")
+      console.log("WHY FIGHT?")
     } else {
       console.log("WHY STRUGGLE")
     }

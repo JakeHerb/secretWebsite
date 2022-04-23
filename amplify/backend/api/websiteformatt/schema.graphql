@@ -10,6 +10,10 @@ type Contact @model
   affinity: String!
 }
 
+type QueueCount @model {
+  count: Int!
+}
+
 type VodAsset @model (subscriptions: {level: public})
 @auth(
   rules: [

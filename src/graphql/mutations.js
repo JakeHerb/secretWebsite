@@ -52,6 +52,54 @@ export const deleteContact = /* GraphQL */ `
     }
   }
 `;
+export const createQueueCount = /* GraphQL */ `
+  mutation CreateQueueCount(
+    $input: CreateQueueCountInput!
+    $condition: ModelQueueCountConditionInput
+  ) {
+    createQueueCount(input: $input, condition: $condition) {
+      count
+      id
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+  }
+`;
+export const updateQueueCount = /* GraphQL */ `
+  mutation UpdateQueueCount(
+    $input: UpdateQueueCountInput!
+    $condition: ModelQueueCountConditionInput
+  ) {
+    updateQueueCount(input: $input, condition: $condition) {
+      count
+      id
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+  }
+`;
+export const deleteQueueCount = /* GraphQL */ `
+  mutation DeleteQueueCount(
+    $input: DeleteQueueCountInput!
+    $condition: ModelQueueCountConditionInput
+  ) {
+    deleteQueueCount(input: $input, condition: $condition) {
+      count
+      id
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+  }
+`;
 export const createVodAsset = /* GraphQL */ `
   mutation CreateVodAsset(
     $input: CreateVodAssetInput!
