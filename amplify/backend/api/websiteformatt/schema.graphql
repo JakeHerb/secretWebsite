@@ -3,17 +3,11 @@ type Contact @model
   rules: [
     {allow: public, operations: [create, read]}
     ]
-  )
+  ) 
   {
   id: ID!
-  email: AWSEmail! @primaryKey
+  email: AWSEmail!
   affinity: String!
-  placeInQueue: Int!
-}
-
-type Counter @model
-{
-  currentCount: Int
 }
 
 type VodAsset @model (subscriptions: {level: public})
