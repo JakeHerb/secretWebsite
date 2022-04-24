@@ -69,8 +69,6 @@ export default class InputTransformComponent extends Component {
 
         if (this.state.email !== '') {         
             const maybeContact = await API.graphql({query: queries.getUser, variables: {email: this.state.email.toLowerCase()}});
-            const updateQueuePlace = await API.graphql({query: mutations.updateQueueCount, variables: {input: {id: "usersInQueue", count: nextInline, _version: fetchedVersion}}})
-            console.log(updateQueuePlace.data);
 
             if (maybeContact.data.getUser !== null) {
                 this.setState({
@@ -89,6 +87,8 @@ export default class InputTransformComponent extends Component {
                         }
                     }
                 })
+                const updateQueuePlace = await API.graphql({query: mutations.updateQueueCount, variables: {input: {id: "usersInQueue", count: nextInline, _version: fetchedVersion}}})
+                console.log(updateQueuePlace.data);
                 this.setState({
                     email: email,
                     submitted: true,
