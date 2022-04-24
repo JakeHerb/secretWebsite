@@ -57,32 +57,22 @@ export default class InputTransformComponent extends Component {
 
     async onSubmit(e) {
         e.preventDefault()
-        console.log("WHAT HAVE YOU DONE " + this.state.email);
         const email = this.state.email.toLowerCase()
         const storedColor = localStorage.getItem('affinity')
         const affinity = this.usePlanet(storedColor)
         const queuePlaceAPI = await API.graphql({query: queueQuery});
         const fetchedVersion = queuePlaceAPI.data.getQueueCount._version;
 
-        console.log("Done with the GET queries");
-        console.log(queuePlaceAPI.data);
-        console.log(queuePlaceAPI.data.getQueueCount.count);
         const nextInline = Number(queuePlaceAPI.data.getQueueCount.count + 1);
 
 
 
         if (this.state.email !== '') {         
-            console.log("BEFORE");
             const maybeContact = await API.graphql({query: queries.getUser, variables: {email: this.state.email.toLowerCase()}});
-            console.log("After. Here come the contacts:");
-            console.log(maybeContact.data);
-            console.log("next in line: " + nextInline);
             const updateQueuePlace = await API.graphql({query: mutations.updateQueueCount, variables: {input: {id: "usersInQueue", count: nextInline, _version: fetchedVersion}}})
-            console.log("Here comes the update data");
             console.log(updateQueuePlace.data);
 
             if (maybeContact.data.getUser !== null) {
-                console.log("CANT ADD IT AGAIN!");
                 this.setState({
                     email: email,
                     submitted: true,
@@ -90,7 +80,6 @@ export default class InputTransformComponent extends Component {
                     alreadyInLine: true
                 })
             } else {
-                console.log("DID NOT FIND THE EMAIL");
                 try {
                 await API.graphql({
                     query: mutations.createUser,
