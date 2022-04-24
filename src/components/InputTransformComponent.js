@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { API } from 'aws-amplify'
-import { createContact } from '../graphql/mutations'
+import * as mutations from '../graphql/mutations'
 import * as queries from '../graphql/queries';
 
 const listContactEmails = /* GraphQL */ `
@@ -14,6 +14,14 @@ const listContactEmails = /* GraphQL */ `
       }
     }
   }
+`;
+
+const queueQuery = /* GraphQL */ `
+    query QueueQuery {
+    getQueueCount(id: "usersInQueue") {
+        count
+    }
+    }
 `;
 
 export default class InputTransformComponent extends Component {
@@ -50,7 +58,6 @@ export default class InputTransformComponent extends Component {
     // Form Events
     onChange(e) {
         const queuePlace = this.state.placeInLine;
-        const email = this.state.email
         this.setState({
             email: e.target.value,
             submitted: false,
@@ -64,7 +71,19 @@ export default class InputTransformComponent extends Component {
         const email = this.state.email
         const storedColor = localStorage.getItem('affinity')
         const affinity = this.usePlanet(storedColor)
+        const queuePlaceAPI = await API.graphql({query: queueQuery});
         const queuePlace = this.state.placeInLine;
+
+        console.log("Done with the GET queries");
+        console.log(queuePlaceAPI.data);
+        console.log(queuePlaceAPI.data.getQueueCount.count);
+        const queueDetails = {
+            id: "usersInQueue",
+            count: queuePlaceAPI.data.getQueueCount.count
+        };
+        const mutatedQueuePlaceAPI = await API.graphql({query: mutations.updateQueueCount, variables: {input: queueDetails}});
+        console.log("Done with the SET mutation");
+        console.log(mutatedQueuePlaceAPI.data);
 
         this.setState({
             email: email,
@@ -78,7 +97,7 @@ export default class InputTransformComponent extends Component {
             console.log(allContacts);
             try {
               await API.graphql({
-                  query: createContact,
+                  query: mutations.createContact,
                   variables: {
                       input: {
                         email, affinity

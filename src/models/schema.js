@@ -24,6 +24,13 @@ export const schema = {
                     "isRequired": true,
                     "attributes": []
                 },
+                "placeInQueue": {
+                    "name": "placeInQueue",
+                    "isArray": false,
+                    "type": "Int",
+                    "isRequired": true,
+                    "attributes": []
+                },
                 "createdAt": {
                     "name": "createdAt",
                     "isArray": false,
@@ -104,6 +111,20 @@ export const schema = {
                 {
                     "type": "model",
                     "properties": {}
+                },
+                {
+                    "type": "auth",
+                    "properties": {
+                        "rules": [
+                            {
+                                "allow": "public",
+                                "operations": [
+                                    "update",
+                                    "read"
+                                ]
+                            }
+                        ]
+                    }
                 }
             ]
         },
@@ -275,5 +296,5 @@ export const schema = {
     },
     "enums": {},
     "nonModels": {},
-    "version": "1f260280ed3a09bb2f3ff41c394e6d59"
+    "version": "fad0d831a83115b36321d52e8e11eb94"
 };

@@ -10,6 +10,7 @@ export const createContact = /* GraphQL */ `
       id
       email
       affinity
+      placeInQueue
       createdAt
       updatedAt
       _version
@@ -27,6 +28,7 @@ export const updateContact = /* GraphQL */ `
       id
       email
       affinity
+      placeInQueue
       createdAt
       updatedAt
       _version
@@ -44,6 +46,7 @@ export const deleteContact = /* GraphQL */ `
       id
       email
       affinity
+      placeInQueue
       createdAt
       updatedAt
       _version

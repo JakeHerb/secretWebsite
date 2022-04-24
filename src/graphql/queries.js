@@ -7,6 +7,7 @@ export const getContact = /* GraphQL */ `
       id
       email
       affinity
+      placeInQueue
       createdAt
       updatedAt
       _version
@@ -26,6 +27,7 @@ export const listContacts = /* GraphQL */ `
         id
         email
         affinity
+        placeInQueue
         createdAt
         updatedAt
         _version
@@ -54,6 +56,7 @@ export const syncContacts = /* GraphQL */ `
         id
         email
         affinity
+        placeInQueue
         createdAt
         updatedAt
         _version

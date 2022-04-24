@@ -24,6 +24,7 @@ export declare class Contact {
   readonly id: string;
   readonly email: string;
   readonly affinity: string;
+  readonly placeInQueue: number;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
   constructor(init: ModelInit<Contact, ContactMetaData>);
