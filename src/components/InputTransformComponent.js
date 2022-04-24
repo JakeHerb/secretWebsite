@@ -22,7 +22,8 @@ export default class InputTransformComponent extends Component {
         this.state = {
             email: '', 
             submitted: false,
-            placeInLine: 0
+            placeInLine: 0,
+            alreadyInLine: false
         }
     }
     
@@ -49,14 +50,15 @@ export default class InputTransformComponent extends Component {
         this.setState({
             email: e.target.value,
             submitted: false,
-            placeInLine: queuePlace
+            placeInLine: queuePlace,
+            alreadyInLine: false
         });
     }
 
     async onSubmit(e) {
         e.preventDefault()
         console.log("WHAT HAVE YOU DONE " + this.state.email);
-        const email = this.state.email
+        const email = this.state.email.toLowerCase()
         const storedColor = localStorage.getItem('affinity')
         const affinity = this.usePlanet(storedColor)
         const queuePlaceAPI = await API.graphql({query: queueQuery});
@@ -68,17 +70,10 @@ export default class InputTransformComponent extends Component {
         const nextInline = Number(queuePlaceAPI.data.getQueueCount.count + 1);
 
 
-        this.setState({
-            email: email,
-            submitted: true,
-            placeInLine: nextInline
-        })
-        if (this.state.email !== '') {
 
-            // Check if the user has already entered their email
-            
+        if (this.state.email !== '') {         
             console.log("BEFORE");
-            const maybeContact = await API.graphql({query: queries.getUser, variables: {email: this.state.email}});
+            const maybeContact = await API.graphql({query: queries.getUser, variables: {email: this.state.email.toLowerCase()}});
             console.log("After. Here come the contacts:");
             console.log(maybeContact.data);
             console.log("next in line: " + nextInline);
@@ -88,6 +83,12 @@ export default class InputTransformComponent extends Component {
 
             if (maybeContact.data.getUser !== null) {
                 console.log("CANT ADD IT AGAIN!");
+                this.setState({
+                    email: email,
+                    submitted: true,
+                    placeInLine: maybeContact.data.getUser.placeInQueue,
+                    alreadyInLine: true
+                })
             } else {
                 console.log("DID NOT FIND THE EMAIL");
                 try {
@@ -98,6 +99,12 @@ export default class InputTransformComponent extends Component {
                             email, affinity, placeInQueue: nextInline
                         }
                     }
+                })
+                this.setState({
+                    email: email,
+                    submitted: true,
+                    placeInLine: nextInline,
+                    alreadyInLine: false
                 })
                 } catch (e) {
                     console.log("Error: Signals blurred")
@@ -161,6 +168,7 @@ export default class InputTransformComponent extends Component {
         )
 
         const submittedPage = (
+                this.state.alreadyInLine === false ? (
               <div className="State-onsubmit">
                 <div>
                   <p>YOU ARE <span style={{color: "red"}}>#{this.state.placeInLine}</span> IN LINE
@@ -171,6 +179,18 @@ export default class InputTransformComponent extends Component {
                 </div>
                 {this.props.planet}
             </div>
+                ) : (
+                    <div className="State-onsubmit">
+                    <div>
+                      <p>YOU'RE ALREADY <span style={{color: "red"}}>#{this.state.placeInLine}</span> IN LINE
+                      <br />WE WILL BE IN CONTACT
+                      <br />IF YOU MADE THE LIST
+                      <br />NOT EVERYONE IS WORTHY
+                      </p>
+                    </div>
+                    {this.props.planet}
+                </div>
+                )
         )
 
         return (
