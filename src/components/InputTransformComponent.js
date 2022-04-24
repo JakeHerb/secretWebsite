@@ -87,8 +87,8 @@ export default class InputTransformComponent extends Component {
                         }
                     }
                 })
-                const updateQueuePlace = await API.graphql({query: mutations.updateQueueCount, variables: {input: {id: "usersInQueue", count: nextInline, _version: fetchedVersion}}})
-                console.log(updateQueuePlace.data);
+                            const updateQueuePlace = await API.graphql({query: mutations.updateQueueCount, variables: {input: {id: "usersInQueue", count: nextInline, _version: fetchedVersion}}})
+            console.log(updateQueuePlace.data);
                 this.setState({
                     email: email,
                     submitted: true,
@@ -105,28 +105,11 @@ export default class InputTransformComponent extends Component {
     // React Life Cycle
     componentDidMount() {
         this.userData = JSON.parse(localStorage.getItem('formData'));
-        if (localStorage.getItem('formData').email) {
-            if (localStorage.getItem('formData').placeInLine) {
-                this.setState({
-                    email: localStorage.getItem('formData').email,
-                    submitted: false,
-                    placeInLine: localStorage.getItem('formData').placeInLine
-                })
-            }
-
-            this.setState({
-                email: '',
-                submitted: false,
-                placeInLine: 0
-            })
-        } else {
-
-            this.setState({
-                email: '',
-                submitted: false,
-                placeInLine: 0
-            })
-        }
+        this.setState({
+            email: '',
+            submitted: false,
+            placeInLine: 0
+        });
     }
     componentWillUpdate(nextProps, nextState) {
         localStorage.setItem('formData', JSON.stringify(nextState));
