@@ -11,6 +11,7 @@ exports.handler = async event => {
       // pull off items from the stream
       const userEmail = streamedItem.dynamodb.NewImage.email.S
       const userAffinity = streamedItem.dynamodb.NewImage.affinity.S
+      const userPlaceInQueue = streamedItem.dynamodb.NewImage.placeInQueue.S
     
       await ses
         .sendEmail({
@@ -22,7 +23,7 @@ exports.handler = async event => {
             Subject: { Data: 'New Recruit'},
             Body: {
               Text: {
-                Data: `New Email:  ${userEmail} - Their mission begins on planet ${userAffinity}`,
+                Data: `New Email:  ${userEmail} - Their mission begins on planet ${userAffinity} - They are ${userPlaceInQueue} in line`,
               },
             },
           },
