@@ -11,6 +11,18 @@ type Contact @model
   placeInQueue: Int!
 }
 
+type User @model
+@auth(
+  rules: [
+    {allow: public, operations: [create, read, delete]}
+    ]
+  ) 
+  {
+  email: AWSEmail! @primaryKey
+  affinity: String!
+  placeInQueue: Int!
+}
+
 type QueueCount @model 
 @auth(
   rules: [
@@ -19,6 +31,8 @@ type QueueCount @model
   ) {
   id: ID!
   count: Int!
+  createdAt: AWSDateTime
+  updatedAt: AWSDateTime
 }
 
 type VodAsset @model (subscriptions: {level: public})

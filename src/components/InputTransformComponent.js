@@ -3,34 +3,9 @@ import { API } from 'aws-amplify'
 import * as mutations from '../graphql/mutations'
 import * as queries from '../graphql/queries';
 
-const listContactEmails = /* GraphQL */ `
-  query ListContacts(
-    $limit: Int
-  ) {
-    listContacts(limit: $limit) {
-      items {
-        email
-        affinity
-      }
-    }
-  }
-`;
-
 const queueQuery = /* GraphQL */ `
     query QueueQuery {
     getQueueCount(id: "usersInQueue") {
-        count,
-        _version
-    }
-    }
-`;
-
-const updateQueue = /* GraphQL */ `
-    mutation MyMutation(
-        $count: Int,
-        $version: Int
-    ) {
-    updateQueueCount(input: {id: "usersInQueue", count: $count, _version: $version}) {
         count,
         _version
     }
@@ -85,48 +60,49 @@ export default class InputTransformComponent extends Component {
         const storedColor = localStorage.getItem('affinity')
         const affinity = this.usePlanet(storedColor)
         const queuePlaceAPI = await API.graphql({query: queueQuery});
-        const fetchedPlaceInQueue = queuePlaceAPI.data.getQueueCount.count;
         const fetchedVersion = queuePlaceAPI.data.getQueueCount._version;
-        const queuePlace = this.state.placeInLine;
 
         console.log("Done with the GET queries");
         console.log(queuePlaceAPI.data);
         console.log(queuePlaceAPI.data.getQueueCount.count);
-        const queueDetails = {
-            id: "usersInQueue",
-            count: queuePlaceAPI.data.getQueueCount.count
-        };
-        // const mutatedQueuePlaceAPI = await API.graphql({query: updateQueue, variables: {count: 14, _version: fetchedVersion + 1}});
-        // console.log("Done with the SET mutation");
-        // console.log(mutatedQueuePlaceAPI.data);
-        // const placeInQueue = mutatedQueuePlaceAPI.data.updateQueueCount._version;
-        // console.log("Here comes version");
-        // console.log(placeInQueue);
+        const nextInline = Number(queuePlaceAPI.data.getQueueCount.count + 1);
+
+
         this.setState({
             email: email,
             submitted: true,
-            placeInLine: fetchedVersion
+            placeInLine: nextInline
         })
         if (this.state.email !== '') {
 
             // Check if the user has already entered their email
             
             console.log("BEFORE");
-            const maybeContact = await API.graphql({query: queries.getContact, variables: {email: this.state.email}});
+            const maybeContact = await API.graphql({query: queries.getUser, variables: {email: this.state.email}});
             console.log("After. Here come the contacts:");
-            console.log(maybeContact);
-            try {
-              await API.graphql({
-                  query: mutations.createContact,
-                  variables: {
-                      input: {
-                        email, affinity, fetchedPlaceInQueue
-                      }
-                  }
-              })
-            } catch (e) {
-                console.log("Error: Signals blurred")
-                console.log(e)
+            console.log(maybeContact.data);
+            console.log("next in line: " + nextInline);
+            const updateQueuePlace = await API.graphql({query: mutations.updateQueueCount, variables: {input: {id: "usersInQueue", count: nextInline, _version: fetchedVersion}}})
+            console.log("Here comes the update data");
+            console.log(updateQueuePlace.data);
+
+            if (maybeContact.data.getUser !== null) {
+                console.log("CANT ADD IT AGAIN!");
+            } else {
+                console.log("DID NOT FIND THE EMAIL");
+                try {
+                await API.graphql({
+                    query: mutations.createUser,
+                    variables: {
+                        input: {
+                            email, affinity, placeInQueue: nextInline
+                        }
+                    }
+                })
+                } catch (e) {
+                    console.log("Error: Signals blurred")
+                    console.log(e)
+                }
             }
           }
     }
@@ -141,28 +117,18 @@ export default class InputTransformComponent extends Component {
                     placeInLine: localStorage.getItem('formData').placeInLine
                 })
             }
-            var startTime = Math.floor(Date.now() / 1000);
-            // Value updated by database for queue estimate:
-            startTime -= 1650427898;
-            // To account for server ping we adjust our start time
-            startTime = Math.floor(startTime / 60);
-            const queuePlace = startTime;
+
             this.setState({
                 email: '',
                 submitted: false,
-                placeInLine: queuePlace
+                placeInLine: 0
             })
         } else {
-            var startTime = Math.floor(Date.now() / 1000);
-            // Value updated by database for queue estimate:
-            startTime -= 1650427898;
-            // To account for server ping we adjust our start time
-            startTime = Math.floor(startTime / 60);
-            const queuePlace = startTime;
+
             this.setState({
                 email: '',
                 submitted: false,
-                placeInLine: queuePlace
+                placeInLine: 0
             })
         }
     }

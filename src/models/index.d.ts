@@ -8,8 +8,12 @@ type ContactMetaData = {
   readOnlyFields: 'createdAt' | 'updatedAt';
 }
 
-type QueueCountMetaData = {
+type UserMetaData = {
   readOnlyFields: 'createdAt' | 'updatedAt';
+}
+
+type QueueCountMetaData = {
+  readOnlyFields;
 }
 
 type VodAssetMetaData = {
@@ -31,13 +35,24 @@ export declare class Contact {
   static copyOf(source: Contact, mutator: (draft: MutableModel<Contact, ContactMetaData>) => MutableModel<Contact, ContactMetaData> | void): Contact;
 }
 
+export declare class User {
+  readonly id: string;
+  readonly email: string;
+  readonly affinity: string;
+  readonly placeInQueue: number;
+  readonly createdAt?: string | null;
+  readonly updatedAt?: string | null;
+  constructor(init: ModelInit<User, UserMetaData>);
+  static copyOf(source: User, mutator: (draft: MutableModel<User, UserMetaData>) => MutableModel<User, UserMetaData> | void): User;
+}
+
 export declare class QueueCount {
   readonly id: string;
   readonly count: number;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
-  constructor(init: ModelInit<QueueCount, QueueCountMetaData>);
-  static copyOf(source: QueueCount, mutator: (draft: MutableModel<QueueCount, QueueCountMetaData>) => MutableModel<QueueCount, QueueCountMetaData> | void): QueueCount;
+  constructor(init: ModelInit<QueueCount>);
+  static copyOf(source: QueueCount, mutator: (draft: MutableModel<QueueCount>) => MutableModel<QueueCount> | void): QueueCount;
 }
 
 export declare class VodAsset {
