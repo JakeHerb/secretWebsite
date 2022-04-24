@@ -12,7 +12,7 @@
     },
     "conflictResolution": {
       "defaultResolutionStrategy": {
-        "type": "AUTOMERGE"
+        "type": "OPTIMISTIC_CONCURRENCY"
       }
     },
     "additionalAuthTypes": [

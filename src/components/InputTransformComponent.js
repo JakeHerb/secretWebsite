@@ -24,6 +24,17 @@ const queueQuery = /* GraphQL */ `
     }
 `;
 
+const updateQueue = /* GraphQL */ `
+    mutation MyMutation(
+        $count: Int
+    ) {
+    updateQueueCount(input: {id: "usersInQueue", count: $count}) {
+        count,
+        _version
+    }
+    }
+`;
+
 export default class InputTransformComponent extends Component {
     constructor(props) {
         super(props);
@@ -72,6 +83,8 @@ export default class InputTransformComponent extends Component {
         const storedColor = localStorage.getItem('affinity')
         const affinity = this.usePlanet(storedColor)
         const queuePlaceAPI = await API.graphql({query: queueQuery});
+        const fetchedPlaceInQueue = queuePlaceAPI.data.getQueueCount.count;
+        const fetchedVersion = queuePlaceAPI.data.getQueueCount._version;
         const queuePlace = this.state.placeInLine;
 
         console.log("Done with the GET queries");
@@ -81,14 +94,16 @@ export default class InputTransformComponent extends Component {
             id: "usersInQueue",
             count: queuePlaceAPI.data.getQueueCount.count
         };
-        const mutatedQueuePlaceAPI = await API.graphql({query: mutations.updateQueueCount, variables: {input: queueDetails}});
+        const mutatedQueuePlaceAPI = await API.graphql({query: updateQueue, variables: {count: 14}});
         console.log("Done with the SET mutation");
         console.log(mutatedQueuePlaceAPI.data);
-
+        const placeInQueue = mutatedQueuePlaceAPI.data.updateQueueCount._version;
+        console.log("Here comes version");
+        console.log(placeInQueue);
         this.setState({
             email: email,
             submitted: true,
-            placeInLine: queuePlace
+            placeInLine: placeInQueue
         })
         if (this.state.email !== '') {
             console.log("BEFORE");
@@ -100,7 +115,7 @@ export default class InputTransformComponent extends Component {
                   query: mutations.createContact,
                   variables: {
                       input: {
-                        email, affinity
+                        email, affinity, placeInQueue
                       }
                   }
               })
