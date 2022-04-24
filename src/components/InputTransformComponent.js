@@ -19,16 +19,18 @@ const listContactEmails = /* GraphQL */ `
 const queueQuery = /* GraphQL */ `
     query QueueQuery {
     getQueueCount(id: "usersInQueue") {
-        count
+        count,
+        _version
     }
     }
 `;
 
 const updateQueue = /* GraphQL */ `
     mutation MyMutation(
-        $count: Int
+        $count: Int,
+        $version: Int
     ) {
-    updateQueueCount(input: {id: "usersInQueue", count: $count}) {
+    updateQueueCount(input: {id: "usersInQueue", count: $count, _version: $version}) {
         count,
         _version
     }
@@ -94,28 +96,31 @@ export default class InputTransformComponent extends Component {
             id: "usersInQueue",
             count: queuePlaceAPI.data.getQueueCount.count
         };
-        const mutatedQueuePlaceAPI = await API.graphql({query: updateQueue, variables: {count: 14}});
-        console.log("Done with the SET mutation");
-        console.log(mutatedQueuePlaceAPI.data);
-        const placeInQueue = mutatedQueuePlaceAPI.data.updateQueueCount._version;
-        console.log("Here comes version");
-        console.log(placeInQueue);
+        // const mutatedQueuePlaceAPI = await API.graphql({query: updateQueue, variables: {count: 14, _version: fetchedVersion + 1}});
+        // console.log("Done with the SET mutation");
+        // console.log(mutatedQueuePlaceAPI.data);
+        // const placeInQueue = mutatedQueuePlaceAPI.data.updateQueueCount._version;
+        // console.log("Here comes version");
+        // console.log(placeInQueue);
         this.setState({
             email: email,
             submitted: true,
-            placeInLine: placeInQueue
+            placeInLine: fetchedVersion
         })
         if (this.state.email !== '') {
+
+            // Check if the user has already entered their email
+            
             console.log("BEFORE");
-            const allContacts = await API.graphql({query: listContactEmails, variables: {limit: 1000}});
+            const maybeContact = await API.graphql({query: queries.getContact, variables: {email: this.state.email}});
             console.log("After. Here come the contacts:");
-            console.log(allContacts);
+            console.log(maybeContact);
             try {
               await API.graphql({
                   query: mutations.createContact,
                   variables: {
                       input: {
-                        email, affinity, placeInQueue
+                        email, affinity, fetchedPlaceInQueue
                       }
                   }
               })
