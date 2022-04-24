@@ -49,8 +49,8 @@ export const onDeleteContact = /* GraphQL */ `
 export const onCreateQueueCount = /* GraphQL */ `
   subscription OnCreateQueueCount {
     onCreateQueueCount {
-      count
       id
+      count
       createdAt
       updatedAt
       _version
@@ -62,8 +62,8 @@ export const onCreateQueueCount = /* GraphQL */ `
 export const onUpdateQueueCount = /* GraphQL */ `
   subscription OnUpdateQueueCount {
     onUpdateQueueCount {
-      count
       id
+      count
       createdAt
       updatedAt
       _version
@@ -75,8 +75,8 @@ export const onUpdateQueueCount = /* GraphQL */ `
 export const onDeleteQueueCount = /* GraphQL */ `
   subscription OnDeleteQueueCount {
     onDeleteQueueCount {
-      count
       id
+      count
       createdAt
       updatedAt
       _version

@@ -71,8 +71,8 @@ export const syncContacts = /* GraphQL */ `
 export const getQueueCount = /* GraphQL */ `
   query GetQueueCount($id: ID!) {
     getQueueCount(id: $id) {
-      count
       id
+      count
       createdAt
       updatedAt
       _version
@@ -89,8 +89,8 @@ export const listQueueCounts = /* GraphQL */ `
   ) {
     listQueueCounts(filter: $filter, limit: $limit, nextToken: $nextToken) {
       items {
-        count
         id
+        count
         createdAt
         updatedAt
         _version
@@ -116,8 +116,8 @@ export const syncQueueCounts = /* GraphQL */ `
       lastSync: $lastSync
     ) {
       items {
-        count
         id
+        count
         createdAt
         updatedAt
         _version

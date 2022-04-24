@@ -61,8 +61,8 @@ export const createQueueCount = /* GraphQL */ `
     $condition: ModelQueueCountConditionInput
   ) {
     createQueueCount(input: $input, condition: $condition) {
-      count
       id
+      count
       createdAt
       updatedAt
       _version
@@ -77,8 +77,8 @@ export const updateQueueCount = /* GraphQL */ `
     $condition: ModelQueueCountConditionInput
   ) {
     updateQueueCount(input: $input, condition: $condition) {
-      count
       id
+      count
       createdAt
       updatedAt
       _version
@@ -93,8 +93,8 @@ export const deleteQueueCount = /* GraphQL */ `
     $condition: ModelQueueCountConditionInput
   ) {
     deleteQueueCount(input: $input, condition: $condition) {
-      count
       id
+      count
       createdAt
       updatedAt
       _version
