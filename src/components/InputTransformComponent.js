@@ -87,7 +87,7 @@ export default class InputTransformComponent extends Component {
                         }
                     }
                 })
-                            const updateQueuePlace = await API.graphql({query: mutations.updateQueueCount, variables: {input: {id: "usersInQueue", count: nextInline, _version: fetchedVersion}}})
+            const updateQueuePlace = await API.graphql({query: mutations.updateQueueCount, variables: {input: {id: "usersInQueue", count: nextInline, _version: fetchedVersion}}})
             console.log(updateQueuePlace.data);
                 this.setState({
                     email: email,
