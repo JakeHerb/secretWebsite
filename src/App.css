@@ -43,6 +43,15 @@ body{
   white-space: nowrap;
 }
 
+.Logo img {
+  padding-top: 0px;
+  position: relative;
+  margin-top: 0vh;
+  margin-bottom: 0;
+  width: 100%;
+  overflow: hidden;
+}
+
 .App-header video{
   width: min(90%, 45vh);
   margin: -1px;
@@ -84,7 +93,7 @@ body{
 
 .EscapeSelection p {
   font-size: 7vh;
-  color: red;
+  color: #ff00a8;
   margin: 0;
   padding: 0;
 }
@@ -146,7 +155,7 @@ body{
 
 .email-container button {
   text-align: center;
-  color: red;
+  color: #ff00a8;
   background-color: #ffffff;
   height: 10vh;
   margin-top: 4vh;
@@ -205,7 +214,7 @@ input:focus + .line:after {
 }
 
 ::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
-  color: red;
+  color: #ff00a8;
   opacity: 1.0; /* Firefox */
 }
 /* end input for CSS */

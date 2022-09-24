@@ -1,12 +1,7 @@
 import './App.css'
 import Amplify from 'aws-amplify'
 import config from './aws-exports'
-import PillComponent from './components/PillComponent'
-import pinkGummy from './media/images/pink_gummy.png'
-import greenGummy from './media/images/green_gummy.png'
-import orangeGummy from './media/images/orange_gummy.png'
-import purpleGummy from './media/images/purple_gummy.png'
-import yellowGummy from './media/images/yellow_gummy.png'
+import logo from './media/images/unwrap_and_steal_logo.png'
 import InputTransformComponent from './components/InputTransformComponent'
 import React, { useEffect, useState } from 'react'
 
@@ -17,7 +12,6 @@ function App() {
   const [isStuck, setIsStuck] = useState(false)
   const [cannotHandleRisk, setCannotHandleRisk] = useState(false)
   const [hasClickedSure, setHasClickedSure] = useState(false)
-  const [hasChosenPill, setHasChosenPill] = useState(false)
   const [planet, setPlanet] = useState("")
 
   const video = (
@@ -28,7 +22,7 @@ function App() {
 
   const yesEscape = <p 
     style={{
-      color: "red",
+      color: "#ff00a8",
       cursor: "pointer",
       paddingRight: "2vw"}}
     onClick={() => 
@@ -40,7 +34,7 @@ function App() {
   const slash = <p> / </p>
   const noEscape = <p 
     style={{
-      color: "red",
+      color: "#ff00a8",
       cursor: "pointer",
       paddingLeft: "2vw"}}
     onClick={() => 
@@ -63,14 +57,14 @@ function App() {
 
   const comeBacktext = <p
     style={{
-      color: "red",
+      color: "#ff00a8",
       fontSize: "3vh",
       fontWeight: "bold"}}
     >COME BACK WHEN<br />YOU'RE READY</p>;
 
   const yesSure = <p 
   style={{
-    color: "red",
+    color: "#ff00a8",
     cursor: "pointer",
     paddingRight: "2vw"}}
   onClick={() => 
@@ -82,18 +76,19 @@ function App() {
 
 const noSure = <p 
   style={{
-    color: "red",
+    color: "#ff00a8",
     cursor: "pointer",
     paddingLeft: "2vw"}}
   onClick={() => 
     {
       setCannotHandleRisk(true);
+      setHasClickedSure(false);
     }}
 >NO</p>
 
   const areYouSureBody = (
     <div className="State-Sure">
-      <h3>THERE ARE RISKS INVOLVED.<br />DO YOU WANT TO CONTINUE?</h3>
+      <h3>THIS IS A REAL LIFE ART HEIST.<br />DO YOU WANT TO CONTINUE?</h3>
       <div
         className='EscapeSelection'
       >
@@ -104,83 +99,10 @@ const noSure = <p
 
 const notSuretext = <p
   style={{
-    color: "red",
+    color: "#ff00a8",
     fontSize: "3.2vh",
     fontWeight: "bold"}}
   >THAT IS WHY NO ONE WILL<br />REMEMBER YOUR NAME</p>;
-
-  const pillSelectionBody = (
-    <div className="State-Entrypoint">
-      <h3>CHOOSE WISELY</h3>
-      <div className='PillSelection'>
-        <div className='YellowGummy'>
-          <PillComponent 
-            imageSource={yellowGummy}
-            color="YELLOW"
-            onClick={() => setHasChosenPill(true)}
-            >
-          </PillComponent>
-        </div>
-        <div className='OrangeGummy'>
-          <PillComponent 
-            imageSource={orangeGummy}
-            color="ORANGE"
-            onClick={() => setHasChosenPill(true)}
-            >
-          </PillComponent>
-        </div>
-        <div className='PinkGummy'>
-          <PillComponent 
-            imageSource={pinkGummy}
-            color="PINK"
-            onClick={() => setHasChosenPill(true)}
-            >
-          </PillComponent>
-        </div>
-        <div className='PurpleGummy'>
-          <PillComponent 
-            imageSource={purpleGummy}
-            color="PURPLE"
-            onClick={() => setHasChosenPill(true)}
-            >
-          </PillComponent>
-        </div>
-        <div className='GreenGummy'>
-          <PillComponent 
-            imageSource={greenGummy}
-            color="GREEN"
-            onClick={() => setHasChosenPill(true)}
-            >
-          </PillComponent>
-        </div>
-      </div>
-    </div>
-  )
-
-  useEffect(() => {
-    console.log("HAVE YOU MADE THE RIGHT CHOICE?")
-    const affinity = localStorage.getItem('affinity')
-    switch (affinity) {
-      case "YELLOW":
-        setPlanet(<p>YOUR MISSION WILL BEGIN ON <br />PLANET ESTALAR</p>)
-        break
-      case "ORANGE":
-        setPlanet(<p>YOUR MISSION WILL BEGIN ON <br />PLANET LETHERION</p>)
-        break
-      case "PINK":
-        setPlanet(<p>YOUR MISSION WILL BEGIN ON <br />PLANET DUFAITHAN</p>)
-        break
-      case "PURPLE":
-        setPlanet(<p>YOUR MISSION WILL BEGIN ON <br />PLANET BLON</p>)
-        break
-      case "GREEN":
-        setPlanet(<p>YOUR MISSION WILL BEGIN ON <br />PLANET VATANICA</p>)
-        break
-      default:
-        setPlanet( <p>No mission.</p>)
-    }
-  
-  }, [hasClickedSure, hasChosenPill])
 
   useEffect(() => {
     if(hasClickedEscape) {
@@ -201,16 +123,18 @@ const notSuretext = <p
   return (
     <div className="App">
       <header className="App-header">
-        <h1 className='Header-text'>THE AMIABIS</h1>
+        <div className="Logo">
+          <img src={logo} ></img>
+        </div>
+        {/* <h1 className='Header-text'>THE AMIABIS</h1> */}
           {video}
       </header>
       <div className='dynamic-content'>
         {(isStuck === true) ? comeBacktext : null}
         {(hasClickedEscape === false && isStuck === false) ? escapeBody : null}
-        {(hasClickedEscape === true && hasChosenPill === false) ? pillSelectionBody : null}
-        {(hasChosenPill === true && hasClickedSure === false && cannotHandleRisk === false) ? areYouSureBody : null}
-        {(cannotHandleRisk === true) ? notSuretext : null}
-        {(hasChosenPill === true && hasClickedSure === true) ? contactEntryBody : null}
+        {(hasClickedEscape === true && hasClickedSure === false && cannotHandleRisk === false) ? areYouSureBody : null}
+        {(cannotHandleRisk === true && hasClickedSure === false) ? notSuretext : null}
+        {(hasClickedSure === true && cannotHandleRisk === false) ? contactEntryBody : null}
         
       </div>
     </div>
